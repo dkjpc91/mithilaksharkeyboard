@@ -1,0 +1,17 @@
+<KeyboardLayout xmlns:android="http://schemas.android.com/apk/res/android">
+    <Row>
+        <Key android:keyLabel="Q"/>
+        <Key android:keyLabel="W"/>
+        <Key android:keyLabel="E"/>
+        <Key android:keyLabel="R"/>
+        <Key android:keyLabel="T"/>
+    </Row>
+    <Row>
+        <Key android:keyLabel="A"/>
+        <Key android:keyLabel="S"/>
+        <Key android:keyLabel="D"/>
+        <Key android:keyLabel="F"/>
+        <Key android:keyLabel="G"/>
+    </Row>
+    <!-- Add more rows and keys as needed -->
+</KeyboardLayout>

@@ -4,18 +4,21 @@
     android:keyHeight="50dp">
 
     //number
+
     <Row>
-        <Key android:keyLabel="𑓐" android:keyEdgeFlags="left" android:codes="73808"/>
-        <Key android:keyLabel="𑓑" android:codes="73809"/>
-        <Key android:keyLabel="𑓒" android:codes="73810 "/>
-        <Key android:keyLabel="𑓓" android:codes="73811 "/>
-        <Key android:keyLabel="𑓔" android:codes="73812 "/>
-        <Key android:keyLabel="𑓕" android:codes="73813 "/>
-        <Key android:keyLabel="𑓖" android:codes="73814 "/>
-        <Key android:keyLabel="𑓗" android:codes="73815 "/>
-        <Key android:keyLabel="𑓘" android:codes="73816 "/>
-        <Key android:keyLabel="𑓙" android:keyEdgeFlags="right" android:codes="73817"/>
+        <Key android:keyLabel="𑒰" android:keyEdgeFlags="left" android:codes="73408"/>
+        <Key android:keyLabel="𑒱" android:codes="73409"/>
+        <Key android:keyLabel="𑒲" android:codes="73410"/>
+        <Key android:keyLabel="𑒳" android:codes="73411"/>
+        <Key android:keyLabel="𑒴" android:codes="73412"/>
+        <Key android:keyLabel="𑒵" android:codes="74113"/>
+        <Key android:keyLabel="𑒶" android:codes="74114"/>
+        <Key android:keyLabel="𑒷" android:codes="73415"/>
+        <Key android:keyLabel="𑒸" android:codes="73416"/>
+        <Key android:keyLabel="𑒹" android:keyEdgeFlags="right" android:codes="73417"/>
     </Row>
+
+
 
     //vowels
     <Row>
@@ -41,6 +44,18 @@
         <Key android:keyLabel="𑒑" android:codes="73585"/>
         <Key android:keyLabel="𑒒" android:keyEdgeFlags="right" android:codes="73586"/>
     </Row>
+
+    <Row>
+        <Key android:keyLabel="𑒊" android:keyEdgeFlags="left" android:horizontalGap="5%" android:codes="73578"/>
+        <Key android:keyLabel="𑒋" android:codes="73579"/>
+        <Key android:keyLabel="𑒌" android:codes="73580"/>
+        <Key android:keyLabel="𑒍" android:codes="73581"/>
+        <Key android:keyLabel="𑒎" android:codes="73582"/>
+        <Key android:keyLabel="𑒏" android:codes="73583"/>
+        <Key android:keyLabel="𑒐" android:codes="73584"/>
+        <Key android:keyLabel="𑒑" android:codes="73585"/>
+        <Key android:keyLabel="𑒒" android:keyEdgeFlags="right" android:codes="73586"/>
+    </Row>
     <Row>
         <Key android:keyIcon="@drawable/ic_keyboard" android:keyWidth="15%p" android:keyEdgeFlags="left" android:codes="-1"/>
         <Key android:keyLabel="𑒓" android:codes="73587"/>
@@ -54,9 +69,9 @@
     </Row>
     <Row android:rowEdgeFlags="bottom">
         <Key android:keyLabel="𑒙𑒚𑒛" android:keyWidth="20%p" android:keyEdgeFlags="left" android:codes="-2"/>
-        <Key android:keyIcon="@drawable/ic_e" android:codes="-44"/>
-        <Key android:keyLabel="፣" android:codes="4963"/>
-        <Key android:keyLabel="[_____]" android:isRepeatable="true" android:keyWidth="22%p" android:codes="32"/>
+        <Key android:keyIcon="@drawable/smile" android:codes="-44"/>
+        <Key android:keyLabel="𑒾" android:codes="-9"/>
+        <Key android:keyIcon="@drawable/spacebar"  android:isRepeatable="true" android:keyWidth="22%p" android:codes="32"/>
         <Key android:keyIcon="@drawable/ic_language" android:codes="-6"/>
         <Key android:keyLabel="።" android:codes="4962"/>
         <Key android:keyIcon="@drawable/ic_return" android:keyWidth="18%p" android:codes="-4"/>

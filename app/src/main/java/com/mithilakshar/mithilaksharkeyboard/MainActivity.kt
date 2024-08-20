@@ -23,7 +23,9 @@ import android.text.TextWatcher
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputConnection
 import android.widget.EditText
+import android.widget.ScrollView
 import android.widget.TextView
+import androidx.core.widget.NestedScrollView
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,7 +34,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var keyboardLayout: KeyboardLayout
     private lateinit var editText: EditText
     private lateinit var textView: TextView
-
+    private lateinit var scrollView: NestedScrollView
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,6 +52,7 @@ class MainActivity : AppCompatActivity() {
         keyboardLayout = findViewById(R.id.mithilaksharkeyboard)
         editText = findViewById(R.id.edittext)
         textView = findViewById(R.id.textview)
+        scrollView = findViewById(R.id.scrollview)
 
         val inputConnection: InputConnection = editText.onCreateInputConnection(EditorInfo())
         keyboardLayout.setInputConnection(inputConnection)
@@ -69,12 +72,19 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun afterTextChanged(p0: Editable?) {
-
+                scrollToBottom()
             }
 
 
         })
 
+
+        textView.setOnClickListener {
+            copyTextToClipboard(textView.text.toString())
+        }
+
+
+"\uD805\uDCB0"
 
 
 
@@ -86,10 +96,18 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun scrollToBottom() {
+        scrollView.post {
+            scrollView.fullScroll(ScrollView.FOCUS_DOWN)
+        }
+    }
+    private fun copyTextToClipboard(text: String) {
+        val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = ClipData.newPlainText("Copied Text", text)
+        clipboard.setPrimaryClip(clip)
 
-
-
-
-
+        // Optional: Notify the user that text was copied
+        Toast.makeText(this, "Text copied to clipboard", Toast.LENGTH_SHORT).show()
+    }
 
 }

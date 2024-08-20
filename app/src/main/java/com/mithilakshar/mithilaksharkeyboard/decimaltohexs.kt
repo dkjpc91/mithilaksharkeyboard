@@ -53,6 +53,28 @@ class decimaltohexs {
 
 
         73703 to  "\uD805\uDCC7", //𑓇
+        128054 to  "\uD83D\uDC36", //🐶
+        -44 to  "", //🐶
+        73406 to "\uD805\uDCBE", //𑒾
+
+        //matra
+        73408 to "\uD805\uDCB0", // 𑒰
+        73409 to "\uD805\uDCB1", // 𑒱
+        73410 to "\uD805\uDCB2", // 𑒲
+        73411 to "\uD805\uDCB3", // 𑒳
+        73412 to "\uD805\uDCB4", // 𑒴
+        73413 to "\uD805\uDCB5", // 𑒵
+        73414 to "\uD805\uDCB6", // 𑒶
+        73415 to "\uD805\uDCB7", // 𑒷
+        73416 to "\uD805\uDCB8", // 𑒸
+        73417 to "\uD805\uDCB9", // 𑒹
+        73418 to "\uD805\uDCBA", // 𑒺
+        73419 to "\uD805\uDCBB", // 𑒻
+        73420 to "\uD805\uDCBC", // 𑒼
+        73421 to "\uD805\uDCBD", // 𑒽
+        73422 to "\uD805\uDCBE"  // 𑒾
+
+
 
 
 

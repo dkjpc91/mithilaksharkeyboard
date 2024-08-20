@@ -5,24 +5,23 @@
     android:verticalGap="1px">
 
     <Row>
-        <Key android:keyLabel="\uD805\uDCAF" android:keyEdgeFlags="left" android:codes="74183"/>
-        <Key android:keyLabel="𑒁" android:codes="74113"/>
-        <Key android:keyLabel="𑒂" android:codes="74114"/>
-        <Key android:keyLabel="𑒃" android:codes="74115"/>
-        <Key android:keyLabel="𑒄" android:codes="74116"/>
-        <Key android:keyLabel="𑒅" android:codes="74117"/>
-        <Key android:keyLabel="𑒆" android:codes="74118"/>
-        <Key android:keyLabel="𑒇" android:codes="74119"/>
-        <Key android:keyLabel="𑒈" android:codes="74120"/>
-        <Key android:keyLabel="𑒉" android:keyEdgeFlags="right" android:codes="74121"/>
+        <Key android:keyLabel="𑓐" android:keyEdgeFlags="left" android:codes="73808"/>
+        <Key android:keyLabel="𑓑" android:codes="73809"/>
+        <Key android:keyLabel="𑓒" android:codes="73810 "/>
+        <Key android:keyLabel="𑓓" android:codes="73811 "/>
+        <Key android:keyLabel="𑓔" android:codes="73812 "/>
+        <Key android:keyLabel="𑓕" android:codes="73813 "/>
+        <Key android:keyLabel="𑓖" android:codes="73814 "/>
+        <Key android:keyLabel="𑓗" android:codes="73815 "/>
+        <Key android:keyLabel="𑓘" android:codes="73816 "/>
+        <Key android:keyLabel="𑓙" android:keyEdgeFlags="right" android:codes="73817"/>
     </Row>
-
     <Row>
-        <Key android:keyLabel="ቅ" android:keyEdgeFlags="left" android:codes="4677"/>
-        <Key android:keyLabel="ው" android:codes="4813"/>
-        <Key android:keyLabel="እ" android:codes="4773"/>
-        <Key android:keyLabel="ር" android:codes="4653"/>
-        <Key android:keyLabel="ት" android:codes="4725"/>
+        <Key android:keyLabel="𑒺" android:keyEdgeFlags="left" android:codes="73418"/>
+        <Key android:keyLabel="𑒻" android:codes="73419"/>
+        <Key android:keyLabel="𑒼" android:codes="73420"/>
+        <Key android:keyLabel="𑒽" android:codes="73421"/>
+        <Key android:keyLabel="𑒾" android:codes="73422"/>
         <Key android:keyLabel="ይ" android:codes="4845"/>
         <Key android:keyLabel="ኡ" android:codes="4769"/>
         <Key android:keyLabel="ኢ" android:codes="4770"/>
@@ -30,15 +29,15 @@
         <Key android:keyLabel="ፕ" android:keyEdgeFlags="right" android:codes="4949"/>
     </Row>
     <Row>
-        <Key android:keyLabel="አ" android:keyEdgeFlags="left" android:horizontalGap="5%" android:codes="4768"/>
-        <Key android:keyLabel="ስ" android:codes="4661"/>
-        <Key android:keyLabel="ድ" android:codes="4853"/>
-        <Key android:keyLabel="ፍ" android:codes="4941"/>
-        <Key android:keyLabel="ግ" android:codes="4877"/>
-        <Key android:keyLabel="ህ" android:codes="4613"/>
-        <Key android:keyLabel="ጅ" android:codes="4869"/>
-        <Key android:keyLabel="ክ" android:codes="4781"/>
-        <Key android:keyLabel="ል" android:keyEdgeFlags="right" android:codes="4621"/>
+        <Key android:keyLabel="𑒊" android:keyEdgeFlags="left" android:horizontalGap="5%" android:codes="73578"/>
+        <Key android:keyLabel="𑒋" android:codes="73579"/>
+        <Key android:keyLabel="𑒌" android:codes="73580"/>
+        <Key android:keyLabel="𑒍" android:codes="73581"/>
+        <Key android:keyLabel="𑒎" android:codes="73582"/>
+        <Key android:keyLabel="𑒏" android:codes="73583"/>
+        <Key android:keyLabel="𑒐" android:codes="73584"/>
+        <Key android:keyLabel="𑒑" android:codes="73585"/>
+        <Key android:keyLabel="𑒒" android:keyEdgeFlags="right" android:codes="73586"/>
     </Row>
     <Row>
         <Key android:keyIcon="@drawable/ic_keyboard" android:keyWidth="15%p" android:keyEdgeFlags="left" android:codes="-1"/>
@@ -54,7 +53,7 @@
     <Row android:rowEdgeFlags="bottom">
         <Key android:keyLabel="123/፩፪፫" android:keyWidth="20%p" android:keyEdgeFlags="left" android:codes="-2"/>
         <Key android:keyIcon="@drawable/ic_e" android:codes="-44"/>
-        <Key android:keyLabel="፣" android:codes="4963"/>
+        <Key android:keyLabel="𑒾" android:codes="-9"/>
         <Key android:keyLabel="[_______]" android:isRepeatable="true" android:keyWidth="22%p" android:codes="32"/>
         <Key android:keyIcon="@drawable/ic_language" android:codes="-6" />
         <Key android:keyLabel="።" android:codes="4962"/>

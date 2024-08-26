@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Text Size -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text Size"
+            android:textSize="16sp"
+            android:paddingTop="8dp" />
+
+        <SeekBar
+            android:id="@+id/textSizeSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Color Picker -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text Color"
+            android:textSize="16sp"
+            android:paddingTop="8dp" />
+
+        <View
+            android:id="@+id/colorPickerView"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#000000"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Width -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Width"
+            android:textSize="16sp"
+            android:paddingTop="8dp" />
+
+        <SeekBar
+            android:id="@+id/widthSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Height -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Height"
+            android:textSize="16sp"
+            android:paddingTop="8dp" />
+
+        <SeekBar
+            android:id="@+id/heightSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Delete Button -->
+        <TextView
+            android:id="@+id/deleteButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:textSize="16sp"
+            android:textColor="#FF0000"
+            android:gravity="center"
+            android:padding="12dp"
+            android:background="?attr/selectableItemBackground"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/moveToTopButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Move to Top" />
+
+    </LinearLayout>
+</ScrollView>

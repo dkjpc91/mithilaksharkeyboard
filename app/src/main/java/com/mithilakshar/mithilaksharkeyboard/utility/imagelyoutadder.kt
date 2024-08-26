@@ -16,7 +16,8 @@ import com.mithilakshar.mithilaksharkeyboard.R
 
 class Imagelyoutadder(
     private val context: Context,
-    private val parentLayout: LinearLayout,
+    private val parentLayout: RelativeLayout,
+
 ) {
 
     private var selectedBitmap: Bitmap? = null
@@ -57,25 +58,30 @@ class Imagelyoutadder(
         val newImageView = ImageView(context)
         newImageView.setImageBitmap(bitmap)
 
-        val layoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.WRAP_CONTENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        )
-
+        // Create LayoutParams with positioning below another view
+        val layoutParams = RelativeLayout.LayoutParams(
+            RelativeLayout.LayoutParams.WRAP_CONTENT,
+            RelativeLayout.LayoutParams.WRAP_CONTENT
+        ).apply {
+            // Position below the EditText or TextView
+            addRule(RelativeLayout.BELOW, R.id.edittext)
+            // Optional: Add margin for spacing
+            setMargins(0, 16, 0, 16) // Adjust margins as needed
+        }
 
         newImageView.layoutParams = layoutParams
 
-        // Find the FrameLayout and add the ImageView
-        val linearLayout: LinearLayout = parentLayout.findViewById(R.id.relative)
-        linearLayout.addView(newImageView)
+        // Find the RelativeLayout and add the ImageView
+        val relativeLayout: RelativeLayout = parentLayout.findViewById(R.id.relative)
+        relativeLayout.addView(newImageView)
 
         // Apply ResizableTouchListener to the ImageView
-        newImageView.setOnTouchListener(DragResizableTouchListener(newImageView))
+        newImageView.setOnTouchListener(GestureTouchListener(context, newImageView))
 
+        // Request focus on the EditText
         editText.requestFocus()
-
-
     }
+
 
 
 

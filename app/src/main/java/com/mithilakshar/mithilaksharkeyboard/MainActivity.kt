@@ -28,7 +28,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputConnection
@@ -36,12 +35,12 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.constraintlayout.widget.ConstraintLayout
 
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -53,16 +52,19 @@ import com.google.android.material.internal.ViewUtils.showKeyboard
 import com.google.android.material.navigation.NavigationView
 import com.mithilakshar.mithilaksharkeyboard.databinding.BottomsheetBinding
 import com.mithilakshar.mithilaksharkeyboard.utility.CustomMenu
+import com.mithilakshar.mithilaksharkeyboard.utility.GestureTouchListener
 import com.mithilakshar.mithilaksharkeyboard.utility.ImagePicker
 import com.mithilakshar.mithilaksharkeyboard.utility.ImageSelectorDialog
 import com.mithilakshar.mithilaksharkeyboard.utility.Imagelyoutadder
-import com.mithilakshar.mithilaksharkeyboard.utility.ResizableTouchListener
+import com.mithilakshar.mithilaksharkeyboard.utility.TextViewAdder
 
 
 class MainActivity : AppCompatActivity(),ColorPickerDialog.ColorPickerListener, NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var adView: AdView
+
+    private lateinit var textViewAdder: TextViewAdder
 
     private lateinit var imagelyoutadder: Imagelyoutadder
     private lateinit var navigationView: NavigationView
@@ -71,7 +73,7 @@ class MainActivity : AppCompatActivity(),ColorPickerDialog.ColorPickerListener, 
     private lateinit var editText: EditText
     private lateinit var textView: TextView
     private lateinit var scrollView: ScrollView
-    private lateinit var linear: LinearLayout
+    private lateinit var linear: RelativeLayout
     private lateinit var binding: ActivityMainBinding
     private var state = true
     private lateinit var imagePicker: ImagePicker
@@ -99,7 +101,14 @@ class MainActivity : AppCompatActivity(),ColorPickerDialog.ColorPickerListener, 
 
         editText=binding.edittext
         scrollView = findViewById(R.id.scrollview)
-        linear=binding.linearLayout
+        linear=binding.relative
+        textViewAdder = TextViewAdder(this,linear)
+
+binding.edittext.setOnClickListener {
+    Toast.makeText(this, "edit clicked", Toast.LENGTH_SHORT).show()
+
+}
+
 
         // Initialize imagePicker without setting any image
         imagePicker = initializeImagePicker(this, activityResultLauncher)
@@ -113,9 +122,13 @@ class MainActivity : AppCompatActivity(),ColorPickerDialog.ColorPickerListener, 
 
         }
 
-        val resizableTouchListener = ResizableTouchListener()
 
-        binding.edittext.setOnTouchListener(resizableTouchListener)
+
+
+        val gestureTouchListener = GestureTouchListener(this,editText)
+
+        //binding.edittext.setOnTouchListener(resizableTouchListener)
+        binding.edittext.setOnTouchListener(gestureTouchListener)
 
 
 
@@ -312,6 +325,10 @@ class MainActivity : AppCompatActivity(),ColorPickerDialog.ColorPickerListener, 
                     iconView.setImageResource(R.drawable.palette)
                     titleView.text = "image चुनू "
                 }
+                R.id.textadder -> {
+                    iconView.setImageResource(R.drawable.palette)
+                    titleView.text = "text चुनू "
+                }
             }
             val layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -381,6 +398,13 @@ class MainActivity : AppCompatActivity(),ColorPickerDialog.ColorPickerListener, 
                 // Handle background color action
 
                 imagelyoutadder.showImagePickerDialog(editText)
+
+            }
+
+            R.id.textadder -> {
+                // Handle background color action
+
+                textViewAdder.showTextInputDialog()
 
             }
         }

@@ -1,0 +1,29 @@
+<!-- res/menu/drawer_menu.xml -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/fontcolor"
+        android:title=""
+        />
+
+    <item
+        android:id="@+id/background"
+        android:title=""
+        />
+    />
+
+    <item
+        android:id="@+id/mobileimage"
+        android:title=""
+        />
+
+
+    <item
+        android:id="@+id/imageviewadder"
+        android:title=""
+        />
+
+
+
+
+</menu>

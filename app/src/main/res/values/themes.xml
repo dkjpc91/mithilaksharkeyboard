@@ -6,4 +6,21 @@
     </style>
 
     <style name="Theme.MithilaksharKeyboard" parent="Base.Theme.MithilaksharKeyboard" />
+
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here -->
+    </style>
+
+    <!-- Custom style for menu items -->
+    <style name="MenuItemTextStyle">
+        <item name="android:textSize">18sp</item> <!-- Adjust text size as needed -->
+        <item name="android:textColor">#FF5722</item> <!-- Adjust text color as needed -->
+    </style>
+
+
+    <style name="CustomSeekBarStyle">
+        <item name="android:progressDrawable">@drawable/seekbar_progress</item>
+        <item name="android:thumb">@android:color/transparent</item> <!-- Optional: Set thumb color if needed -->
+    </style>
 </resources>

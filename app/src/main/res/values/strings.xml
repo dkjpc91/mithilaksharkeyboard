@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MithilaksharKeyboard</string>
+    <string name="navigation_drawer_open">open\n</string>
+    <string name="navigation_drawer_close">close</string>
 </resources>

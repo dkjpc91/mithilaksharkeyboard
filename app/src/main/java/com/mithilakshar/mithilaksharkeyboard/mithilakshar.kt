@@ -41,7 +41,7 @@ class Mithilakshar : InputMethodService(), KeyboardView.OnKeyboardActionListener
             Keyboard.KEYCODE_DONE -> inputConnection.sendKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER))
             else -> {
                 if (primaryCode !in listOf(-2, -1, -7, -6, -8)) {
-                    val c = decimaltohexs().getdecimaltohex(primaryCode) ?: primaryCode.toChar().toString()
+                    val c = decimaltohexs().getTirhutaCharacterFromEnglish(primaryCode.toChar()) ?: primaryCode.toChar().toString()
                     Log.d("text", "i: $primaryCode")
                     inputConnection.commitText(c.toString(), 1)
                 }

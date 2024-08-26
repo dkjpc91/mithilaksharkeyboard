@@ -10,10 +10,8 @@ import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
 import android.util.Log
-import android.view.KeyEvent
 
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.inputmethod.InputConnection
 import androidx.core.content.res.ResourcesCompat
 
@@ -40,7 +38,7 @@ class KeyboardLayout(context: Context, attrs: AttributeSet?) : KeyboardView(cont
     private var repeatInterval = 50L
 
     init {
-         typeface = ResourcesCompat.getFont(context, R.font.tirhuta)
+         typeface = ResourcesCompat.getFont(context, R.font.mithilakshar_dkj)
         paint.typeface = typeface
         paint.isAntiAlias = true
         paint.textAlign = Paint.Align.CENTER
@@ -148,7 +146,7 @@ class KeyboardLayout(context: Context, attrs: AttributeSet?) : KeyboardView(cont
             else -> {
                 if (primaryCode !in listOf(-2, -1, -7, -6, -8)) {
                     // Convert primaryCode to character
-                    val c = decimaltohexs().getdecimaltohexsurrogate(primaryCode) ?: primaryCode.toChar().toString()
+                    val c = primaryCode.toChar().toString() ?: primaryCode.toChar().toString()
                     Log.d("text", "i: $primaryCode")
                     inputConnection.commitText(c, 1)
                 }
@@ -169,20 +167,42 @@ class KeyboardLayout(context: Context, attrs: AttributeSet?) : KeyboardView(cont
             in listOf(4677, 4672, 4673, 4674, 4675, 4676, 4678, 4679) -> R.xml.q_qwerty
             in listOf(4688, 4689, 4690, 4691, 4692, 4693, 4694, 4699) -> R.xml.qq_qwerty
             in listOf(4813, 4808, 4809, 4810, 4811, 4812, 4814) -> R.xml.w_qwerty
-            -1 -> if (shiftSelected) R.xml.qwerty else R.xml.shift_qwerty
+            -1 ->  if (!languageSelected){
 
-            -2 -> if (numberSelected){
-                Log.d("text", "itrue: $numberSelected")
+                Log.d("text", "itrue: $languageSelected")
                 Log.d("text", "itrue: $typeface")
-                currentLayoutResId=R.xml.qwerty
-                    numberSelected=false
-                    R.xml.qwerty }
-                else {
-                Log.d("text", "ifalse: $numberSelected")
+
+                languageSelected=true
+                currentLayoutResId= R.xml.qwerty
+                R.xml.qwerty
+            }
+
+            else {
+
+                Log.d("text", "ifalse: $languageSelected")
                 Log.d("text", "ifalse: $typeface")
-                   currentLayoutResId=R.xml.number_qwerty
-                    numberSelected=true
-                    R.xml.number_qwerty}
+                currentLayoutResId= R.xml.a_qwerty
+                languageSelected=false
+                R.xml.a_qwerty }
+
+
+            -2 -> if (!languageSelected){
+
+                Log.d("text", "itrue: $languageSelected")
+                Log.d("text", "itrue: $typeface")
+
+                languageSelected=true
+                currentLayoutResId= R.xml.qwerty
+                R.xml.qwerty
+            }
+
+            else {
+
+                Log.d("text", "ifalse: $languageSelected")
+                Log.d("text", "ifalse: $typeface")
+                currentLayoutResId= R.xml.a_qwerty
+                languageSelected=false
+                R.xml.a_qwerty }
 
             -6 -> if (!languageSelected){
 
@@ -224,6 +244,24 @@ class KeyboardLayout(context: Context, attrs: AttributeSet?) : KeyboardView(cont
                 currentLayoutResId= R.xml.a_qwerty
                 languageSelected=false
                 R.xml.a_qwerty }
+
+            -11->  if (!languageSelected){
+
+                Log.d("text", "itrue: $languageSelected")
+                Log.d("text", "itrue: $typeface")
+
+                languageSelected=true
+                currentLayoutResId= R.xml.qwerty
+                R.xml.qwerty
+            }
+
+            else {
+
+                Log.d("text", "ifalse: $languageSelected")
+                Log.d("text", "ifalse: $typeface")
+                currentLayoutResId= R.xml.a_qwerty
+                languageSelected=false
+                R.xml.hindi }
 
             -44 ->if (!languageSelected){
 

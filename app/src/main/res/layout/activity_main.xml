@@ -1,62 +1,219 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- BlinkingCursorTextView taking a specific height -->
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/scrollview"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_above="@id/mithilaksharkeyboard"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="20dp"
-        android:layout_alignParentEnd="true">
+
+
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/main"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+
+
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:layout_weight="1"
+                android:background="#F8EF9F"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:background="#F8EF9F"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+
+                    <ImageButton
+
+                        android:id="@+id/drawertoggle"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="05dp"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="10dp"
+                        android:src="@drawable/hamburger"
+                        ads:tint="#03A9F4" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="-05dp"
+                        android:layout_marginRight="35dp"
+                        android:padding="20dp"
+                        android:src="@drawable/keyboard" />
+                </LinearLayout>
+
+                <com.google.android.gms.ads.AdView
+                    android:id="@+id/adView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    ads:adSize="BANNER"
+                    ads:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+
+            </LinearLayout>
+
+
+            <RelativeLayout
+
+                android:id="@+id/relative"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+
+                <ScrollView
+                    android:id="@+id/scrollview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="0dp"
+                    android:background="@drawable/page1">
+
+                    <EditText
+                        android:id="@+id/edittext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_edittext_background"
+                        android:clickable="true"
+                        android:focusableInTouchMode="true"
+                        android:fontFamily="@font/mithilakshar_dkj"
+                        android:gravity="top"
+                        android:hint="हिंदी में टाइप करू या हिंदी में पेस्ट करू "
+                        android:inputType="textMultiLine"
+                        android:padding="10dp"
+                        android:textColor="@color/black"
+
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+
+                        />
+
+
+                </ScrollView>
+
+            </RelativeLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:visibility="gone"
+            android:layout_marginTop="-80dp"
+            android:id="@+id/sheet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            ads:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+            <include layout="@layout/bottomsheet"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
         <com.mithilakshar.mithilaksharkeyboard.BlinkingCursorTextView
             android:id="@+id/textview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="10dp"
+            android:visibility="gone"
             android:gravity="top"
-            android:text="=dskhkdfhdjfdshfldsflsdflksdfldsjfldskjfldfldjf"
-            android:hint="Type here"
+            android:fontFamily="@font/mithilakshar_dkj"
+            android:text="\u0905"
+            android:hint="हिन्दी विश्व की एक प्रमुख भाषा है"
             android:padding="10dp"
             android:textColor="@color/black"
-            android:textSize="28sp"
+            android:textSize="22sp"
             android:lineSpacingExtra="-10dp"
 
             android:scrollbars="vertical"
-        />
+            />
+        <View
+            android:id="@+id/mithilaksharkeyboard"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignParentBottom="true"
+            android:background="#ebeff2"
+            android:keyBackground="@drawable/key_background"
+            android:keyPreviewLayout="@layout/key_preview"
+            android:keyTextColor="#000000"
+            ads:layout_constraintBottom_toBottomOf="parent" />
 
 
-    </androidx.core.widget.NestedScrollView>
 
 
-    <!-- Custom KeyboardLayout at the bottom -->
-    <com.mithilakshar.mithilaksharkeyboard.KeyboardLayout
-        android:id="@+id/mithilaksharkeyboard"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:keyTextColor="#000000"
-        android:background="#ebeff2"
-        android:layout_alignParentBottom="true"
-        android:keyPreviewLayout="@layout/key_preview"
-        android:keyBackground="@drawable/key_background"/>
 
-    <!-- Visible EditText below the KeyboardLayout -->
-    <EditText
-        android:id="@+id/edittext"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:hint="Type here"
-        android:textSize="28sp"
-        android:textColor="@color/black"
-        android:layout_marginBottom="6dp"
-        android:padding="16dp"
-        android:gravity="top"
-        android:layout_below="@id/mithilaksharkeyboard"/>
 
-</RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+        <FrameLayout
+            android:id="@+id/frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom|end">
+
+
+
+
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                ads:fabSize="normal"
+                ads:useCompatPadding="true"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/setting"
+     />
+
+        </FrameLayout>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <!-- Navigation Drawer -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+   />
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -1,0 +1,35 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    android:layout_marginTop="0dp"
+    android:background="@drawable/header_background" >
+
+    <!-- User Image -->
+    <ImageView
+        android:id="@+id/header_image"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:src="@drawable/m"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center"
+        android:contentDescription="User Image"
+        android:layout_marginBottom="8dp"
+        android:elevation="4dp"
+        android:clipToOutline="true"
+        android:background="@drawable/circular_background" />
+
+    <!-- User Name -->
+    <TextView
+        android:id="@+id/header_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="दीपक कुमार झा द्वारा डेवलप्ड"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@android:color/white"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp" />
+</LinearLayout>

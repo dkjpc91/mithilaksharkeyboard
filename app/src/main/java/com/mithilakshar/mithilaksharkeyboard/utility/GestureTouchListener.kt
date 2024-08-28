@@ -127,26 +127,56 @@ class GestureTouchListener(private val context: Context,private val view: View) 
     }
 
     private inner class ScaleGestureListener : ScaleGestureDetector.SimpleOnScaleGestureListener() {
+
         override fun onScale(detector: ScaleGestureDetector): Boolean {
             val view = currentView ?: return false
 
             // Get the scale factor
             val scaleFactor = detector.scaleFactor
 
-            // Calculate new width and height
-            val newWidth = (view.width * scaleFactor).toInt()
-            val newHeight = (view.height * scaleFactor).toInt()
+            // Calculate the change in X and Y positions of the two fingers
+            val deltaX = detector.currentSpanX - detector.previousSpanX
+            val deltaY = detector.currentSpanY - detector.previousSpanY
 
-            // Prevent resizing below a minimum size
-            val minSize = 50
-            if (newWidth >= minSize && newHeight >= minSize) {
-                Log.d("GestureTouchListener", "Scaling view to width: $newWidth, height: $newHeight")
-                animateResize(view, newWidth, newHeight)
+            // Determine the scaling direction based on the touch movement
+            if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                // Horizontal scaling
+                val newScaleX = view.scaleX * scaleFactor
+                val minScaleX = 0.5f
+                val maxScaleX = 3.0f
+
+                if (newScaleX in minScaleX..maxScaleX) {
+                    view.scaleX = newScaleX
+                    Log.d("ScaleGestureListener", "Scaling view horizontally to scaleX: ${view.scaleX}")
+                }
+            } else if (Math.abs(deltaY) > Math.abs(deltaX)) {
+                // Vertical scaling
+                val newScaleY = view.scaleY * scaleFactor
+                val minScaleY = 0.5f
+                val maxScaleY = 3.0f
+
+                if (newScaleY in minScaleY..maxScaleY) {
+                    view.scaleY = newScaleY
+                    Log.d("ScaleGestureListener", "Scaling view vertically to scaleY: ${view.scaleY}")
+                }
+            } else {
+                // Diagonal scaling (or if both X and Y are roughly equal)
+                val newScaleX = view.scaleX * scaleFactor
+                val newScaleY = view.scaleY * scaleFactor
+                val minScale = 0.5f
+                val maxScale = 3.0f
+
+                if (newScaleX in minScale..maxScale && newScaleY in minScale..maxScale) {
+                    view.scaleX = newScaleX
+                    view.scaleY = newScaleY
+                    Log.d("ScaleGestureListener", "Scaling view to scaleX: ${view.scaleX}, scaleY: ${view.scaleY}")
+                }
             }
 
             return true
         }
     }
+
 
     fun openKeyboard(context: Context, editText: EditText) {
         editText.requestFocus()

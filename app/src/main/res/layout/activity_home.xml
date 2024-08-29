@@ -3,55 +3,74 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-    <TextView
+    <LinearLayout
+        android:background="@drawable/header_background"
         android:layout_width="match_parent"
-        android:text="@string/app_name"
-        android:layout_height="20dp"
-        android:fontFamily="@font/mithilakshar_dkj"
-        android:textSize="26sp"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        android:layout_height="match_parent">
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageContainer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
+        <!-- Header TextView -->
+        <TextView
+            android:id="@+id/app_name"
             android:layout_width="match_parent"
+            android:text="@string/app_name"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:fontFamily="@font/mithilakshar_dkj"
+            android:textSize="26sp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/scrollView"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp"
+            />
 
-            <!-- Instructions text here -->
-            <TextView
-                android:fontFamily="@font/mithilakshar_dkj"
-                android:id="@+id/instructionsText"
+        <!-- ScrollView that will fill the remaining space -->
+        <ScrollView
+            android:background="#ECE8E8"
+            android:layout_marginBottom="111dp"
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+
+            app:layout_constraintTop_toBottomOf="@id/app_name"
+            app:layout_constraintBottom_toTopOf="@id/imageContainer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/instructions"
-                 android:textSize="16sp" />
+                android:orientation="vertical"
+                android:padding="16dp">
 
-        </LinearLayout>
-    </ScrollView>
+                <!-- Instructions text here -->
+                <TextView
+                    android:fontFamily="@font/mithilakshar_dkj"
+                    android:id="@+id/instructionsText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/instructions"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- Image Container at the bottom -->
+
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/imageContainer"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="16dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
@@ -65,7 +84,7 @@
             android:contentDescription="Next"
             android:clickable="true"
             android:focusable="true"
-            android:background="@drawable/header_background"/>
+            android:background="@drawable/header_background" />
 
         <ImageView
             android:id="@+id/anotherImage"
@@ -75,9 +94,10 @@
             android:src="@drawable/palette"
             android:contentDescription="Another image"
             android:clickable="true"
-            android:focusable="true"
-          />
+            android:focusable="true" />
 
     </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

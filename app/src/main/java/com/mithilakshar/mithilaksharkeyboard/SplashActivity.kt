@@ -30,7 +30,8 @@ class SplashActivity : AppCompatActivity() {
 
         Handler(Looper.getMainLooper()).postDelayed({
 
-            showAdOrProceed()
+            //showAdOrProceed()
+            startMainActivity()
           // Optional: finish the current activity if you don't want to keep it in the back stack
         }, 3000)
 

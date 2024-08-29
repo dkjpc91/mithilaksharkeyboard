@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity(),ColorPickerDialog.ColorPickerListener, 
         MobileAds.initialize(this) {}
         adView = binding.adView
         val adRequest = AdRequest.Builder().build()
-        adView.loadAd(adRequest)
+        //adView.loadAd(adRequest)
 
         editText=binding.edittext
         scrollView = findViewById(R.id.scrollview)
@@ -372,7 +372,7 @@ binding.edittext.setOnClickListener {
                     activityResultLauncher = activityResultLauncher,
                     onImagePicked = { uri ->
                         // Set the picked image URI as background later
-                        setImageAsBackground(binding.scrollview,uri)
+                        setImageAsBackground(binding.relative,uri)
                     }
                 )
 
@@ -388,7 +388,7 @@ binding.edittext.setOnClickListener {
 
                 val imageSelectorDialog = ImageSelectorDialog(this) { selectedImage ->
                     // Handle the selected image here
-                    binding.scrollview.setBackgroundResource(selectedImage)
+                    binding.relative.setBackgroundResource(selectedImage)
                     Log.d("colorpicker", "Color selected: $selectedImage")
                 }
                 imageSelectorDialog.show()

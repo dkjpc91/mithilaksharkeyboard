@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="110dp"
                 android:layout_weight="1"
-                android:background="#F8EF9F"
+                android:background="#D0D6F8"
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +40,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:background="#F8EF9F"
+                    android:background="#E1F8C6"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -50,19 +50,24 @@
                         android:id="@+id/drawertoggle"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:layout_marginStart="05dp"
+                        android:layout_marginStart="18dp"
                         android:background="?attr/selectableItemBackground"
                         android:padding="10dp"
                         android:src="@drawable/hamburger"
                         ads:tint="#03A9F4" />
-
-                    <ImageView
+                    <TextView
+                        android:fontFamily="@font/mithilakshar_dkj"
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="#03A9F4"
+                        android:textSize="24sp"
                         android:layout_marginLeft="-05dp"
                         android:layout_marginRight="35dp"
-                        android:padding="20dp"
-                        android:src="@drawable/keyboard" />
+
+                        android:text="@string/app_name"/>
+
                 </LinearLayout>
 
                 <com.google.android.gms.ads.AdView

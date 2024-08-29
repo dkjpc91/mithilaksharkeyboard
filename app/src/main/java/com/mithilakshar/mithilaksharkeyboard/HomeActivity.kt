@@ -1,5 +1,7 @@
 package com.mithilakshar.mithilaksharkeyboard
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +11,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.marginTop
 import com.mithilakshar.mithilaksharkeyboard.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
@@ -31,19 +34,48 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-       binding. anotherImage.setOnClickListener {
-            // Handle click for the anotherImage
-           val initialHeight = binding.scrollView.height
-           val targetHeight = LinearLayout.LayoutParams.MATCH_PARENT
-           val animator = ValueAnimator.ofInt(initialHeight, targetHeight)
-           animator.addUpdateListener { valueAnimator ->
-               val layoutParams = binding.scrollView.layoutParams
-               layoutParams.height = valueAnimator.animatedValue as Int
-               binding.scrollView.layoutParams = layoutParams
-           }
-           animator.duration = 500 // Duration in milliseconds
-           animator.interpolator = LinearInterpolator()
-           animator.start()
+
+
+        // Initialize a flag to track the expanded state
+        var isExpanded = false
+
+        binding.anotherImage.setOnClickListener {
+            val initialHeight = binding.scrollView.height
+            val collapseHeight = 0 // Collapse to zero height
+            val expandHeight = if (isExpanded) 200 else 1650 // Collapse to 200, expand to 1650
+
+            // First animation: Collapse to zero height
+            val collapseAnimator = ValueAnimator.ofInt(initialHeight, collapseHeight)
+            collapseAnimator.addUpdateListener { valueAnimator ->
+                val layoutParams = binding.scrollView.layoutParams
+                layoutParams.height = valueAnimator.animatedValue as Int
+                binding.scrollView.layoutParams = layoutParams
+            }
+            collapseAnimator.duration = 300 // Duration for collapse in milliseconds
+            collapseAnimator.interpolator = LinearInterpolator()
+
+            // Second animation: Expand to target height
+            val expandAnimator = ValueAnimator.ofInt(collapseHeight, expandHeight)
+            expandAnimator.addUpdateListener { valueAnimator ->
+                val layoutParams = binding.scrollView.layoutParams
+                layoutParams.height = valueAnimator.animatedValue as Int
+                binding.scrollView.layoutParams = layoutParams
+            }
+            expandAnimator.duration = 700 // Duration for expand in milliseconds
+            expandAnimator.interpolator = LinearInterpolator()
+
+            // Start the collapse animation, then the expand animation
+            collapseAnimator.start()
+            collapseAnimator.addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    // Start the expand animation after collapse completes
+                    expandAnimator.start()
+                }
+            })
+
+            // Toggle the expanded state
+            isExpanded = !isExpanded
         }
-    }
-}
+
+
+    }}

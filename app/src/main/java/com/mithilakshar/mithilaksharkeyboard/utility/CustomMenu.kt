@@ -1,5 +1,6 @@
 package com.mithilakshar.mithilaksharkeyboard.utility
 
+import ViewDownloader
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -20,7 +21,7 @@ class CustomMenu(
     private val adView: AdView
 
 ) {
-    val viewDownloader = ViewDownloader(context)
+    val viewDownloader = sViewDownloader(context)
     fun showDialog() {
         // Inflate the custom layout
         val inflater = LayoutInflater.from(context)
@@ -28,12 +29,12 @@ class CustomMenu(
 
         // Create an AlertDialog.Builder
         val builder = AlertDialog.Builder(context)
-            .setTitle("Custom Dialog")
             .setView(customView) // Set the custom layout
             .setCancelable(true)
 
         // Create and show the dialog
         val alertDialog: AlertDialog = builder.create()
+        alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
         // Find buttons in the custom layout
         val buttonOption1: Button = customView.findViewById(R.id.button_option1)
@@ -44,7 +45,7 @@ class CustomMenu(
         // Set click listeners
         buttonOption1.setOnClickListener {
             // Capture and download the visible part of the screen
-            viewDownloader.downloadViewAsImage(main, "captured_view",listOf(linear, fab,adView))
+            viewDownloader.downloadViewAsImage(main, "captured_view")
 
             // Display a success message
             Toast.makeText(context, "Image saved successfully", Toast.LENGTH_SHORT).show()

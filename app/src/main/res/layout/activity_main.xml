@@ -9,8 +9,7 @@
 
 
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/main"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout android:id="@+id/main"
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -40,7 +39,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:background="#E1F8C6"
+                    android:background="#FFEB3B"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -199,6 +198,8 @@
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab"
+         android:backgroundTint="#FFEB3B"
+                android:tint="#FFC107"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center_vertical"

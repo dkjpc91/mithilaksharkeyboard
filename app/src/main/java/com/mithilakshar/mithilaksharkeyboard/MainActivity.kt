@@ -235,7 +235,7 @@ binding.edittext.setOnClickListener {
         binding.fab.setOnClickListener{
 
            // binding.linearLayout.visibility=View.GONE
-            val customAlertDialog = CustomMenu(this,binding.main, binding.fab,binding.linearLayout,binding.adView)
+            val customAlertDialog = CustomMenu(this,binding.relative, binding.fab,binding.linearLayout,binding.adView)
             customAlertDialog.showDialog()
 
 

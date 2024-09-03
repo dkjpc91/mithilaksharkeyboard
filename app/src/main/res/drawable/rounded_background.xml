@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Transparent background layer -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent"/>
+        </shape>
+    </item>
+    <!-- Rounded corners layer -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="16dp"/> <!-- Adjust the radius for rounded corners -->
+            <solid android:color="#C9E9F3"/> <!-- Background color inside the rounded corners -->
+        </shape>
+    </item>
+</layer-list>

@@ -1,8 +1,8 @@
-package com.mithilakshar.mithilaksharkeyboard.utility
-
 import android.content.ContentValues
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
 import android.os.Environment
 import android.provider.MediaStore
 import android.view.View
@@ -14,15 +14,15 @@ class ViewDownloader(private val context: Context) {
     fun downloadViewAsImage(view: View, fileName: String, viewsToRemove: List<View> = emptyList()) {
         val parentView = view.parent as? ViewGroup ?: return
 
-        // Measure the parent view to get its initial height
-        val originalHeight = parentView.height
-
-        // Save the original layout parameters of the views to be removed
+        // Save the original layout parameters and background of the views to be removed
         val originalParams = viewsToRemove.map { it.layoutParams }
+        val originalBackgrounds = viewsToRemove.map { it.background }
 
         try {
             // Temporarily hide and adjust the layout parameters of the specified views
-            viewsToRemove.forEach { viewToRemove ->
+            viewsToRemove.forEachIndexed { index, viewToRemove ->
+                // Set the background to transparent
+                viewToRemove.setBackgroundColor(Color.TRANSPARENT)
                 viewToRemove.visibility = View.GONE
             }
 
@@ -30,40 +30,31 @@ class ViewDownloader(private val context: Context) {
             parentView.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
             parentView.requestLayout()
 
-            // Convert the view to a Bitmap
-            val bitmap = getBitmapFromView(view)
+            // Force the layout to redraw itself before capturing the bitmap
+            parentView.invalidate()
+            parentView.postDelayed({
+                // Create a bitmap with the size of the parent view
+                val bitmap = Bitmap.createBitmap(parentView.width, parentView.height, Bitmap.Config.ARGB_8888)
+                val canvas = Canvas(bitmap)
+                parentView.draw(canvas)
 
-            // Restore the original layout parameters and visibility of the hidden views
-            viewsToRemove.forEachIndexed { index, viewToRestore ->
-                viewToRestore.visibility = View.VISIBLE
-                viewToRestore.layoutParams = originalParams[index]
-            }
+                // Restore the original layout parameters and visibility of the hidden views
+                viewsToRemove.forEachIndexed { index, viewToRestore ->
+                    viewToRestore.visibility = View.VISIBLE
+                    viewToRestore.background = originalBackgrounds[index]
+                    viewToRestore.layoutParams = originalParams[index]
+                }
 
-            // Restore the original height of the parent view
-            parentView.layoutParams.height = originalHeight
-            parentView.requestLayout()
+                // Restore the original height of the parent view
+                parentView.layoutParams.height = parentView.height
+                parentView.requestLayout()
 
-            // Save the bitmap to the Pictures directory
-            saveBitmapToPictures(bitmap, fileName)
+                // Save the bitmap to the Pictures directory
+                saveBitmapToPictures(bitmap, fileName)
+            }, 100) // Delay slightly to ensure the layout is redrawn
         } catch (e: Exception) {
             e.printStackTrace()
         }
-    }
-
-
-
-    private fun getBitmapFromView(view: View): Bitmap {
-        // Enable drawing cache
-        view.isDrawingCacheEnabled = true
-        view.buildDrawingCache()
-
-        // Create the bitmap from the view's drawing cache
-        val bitmap = Bitmap.createBitmap(view.drawingCache)
-
-        // Disable drawing cache
-        view.isDrawingCacheEnabled = false
-
-        return bitmap
     }
 
     private fun saveBitmapToPictures(bitmap: Bitmap, fileName: String) {

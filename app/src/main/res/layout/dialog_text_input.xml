@@ -1,15 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Heading Text -->
+    <TextView
+        android:gravity="center"
+        android:id="@+id/text_heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="मिथिलाक्षर"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Description Text -->
+    <TextView
+        android:gravity="center"
+        android:id="@+id/text_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="हिंदी में टाइप करू या हिंदी में वाक्य पेस्ट करू। मिथिलाक्षर में अपने परिवर्तन भ जैत। "
+        android:textSize="19sp"
+        android:layout_below="@id/text_heading"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- EditText -->
     <EditText
         android:id="@+id/editText_enter_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter your text"
-        android:inputType="text"
-        android:padding="10dp" />
-</LinearLayout>
+        android:gravity="start"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_height="400dp"
+        android:layout_below="@id/text_description"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_edit_text"
+        android:padding="16dp"
+        android:hint="Enter text"
+        android:textSize="20sp"/>
+</RelativeLayout>

@@ -3,7 +3,7 @@
     android:shape="rectangle">
 
     <!-- Background color of the rounded square -->
-    <solid android:color="#FDF187" />
+    <solid android:color="#C3E9FA" />
 
     <!-- Define corner radius for the rounded square -->
     <corners android:radius="16dp" />

@@ -45,6 +45,47 @@
                 android:rowCount="5">
 
             <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_height="match_parent"
+                    android:layout_margin="3dp"
+                    app:cardCornerRadius="32dp"
+                    app:cardElevation="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/posterbackgroundprelist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/posterbackgroundlist"/>
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="बैकग्राउंड \n लिस्ट"
+                            android:layout_gravity="center"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textSize="20dp">
+
+                        </TextView>
+
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_columnWeight="1"
                 android:layout_height="match_parent"
@@ -53,6 +94,7 @@
                 app:cardElevation="10dp">
 
                 <LinearLayout
+                    android:id="@+id/posterbackgroundlist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -63,18 +105,19 @@
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/up">
+                        android:src="@drawable/posterbackgroundlist">
 
                     </ImageView>
 
                     <TextView
+                        android:gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=" अ "
+                        android:text="फोटोलिस्ट बैकग्राउंड"
                         android:layout_gravity="center"
                         android:textColor="@color/black"
                         android:textStyle="bold"
-                        android:textSize="35dp">
+                        android:textSize="20dp">
 
                     </TextView>
 
@@ -93,6 +136,7 @@
                     app:cardElevation="10dp">
 
                     <LinearLayout
+                        android:id="@+id/mithilakshar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -103,18 +147,17 @@
                             android:layout_width="120dp"
                             android:layout_height="120dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/up">
-
-                        </ImageView>
+                            android:src="@drawable/posterbackgroundlist"/>
 
                         <TextView
+                            android:gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text=" अ "
+                            android:text="बैकग्राउंड \n लिस्ट"
                             android:layout_gravity="center"
                             android:textColor="@color/black"
                             android:textStyle="bold"
-                            android:textSize="35dp">
+                            android:textSize="20dp">
 
                         </TextView>
 
@@ -124,277 +167,138 @@
 
 
                 </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_height="match_parent"
+                    android:layout_margin="3dp"
+                    app:cardCornerRadius="32dp"
+                    app:cardElevation="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/devnagri"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/posterbackgroundlist">
+
+                        </ImageView>
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="फोटोलिस्ट बैकग्राउंड"
+                            android:layout_gravity="center"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textSize="20dp">
+
+                        </TextView>
+
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_height="match_parent"
+                    android:layout_margin="3dp"
+                    app:cardCornerRadius="32dp"
+                    app:cardElevation="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/imagelist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/posterbackgroundlist"/>
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="बैकग्राउंड \n लिस्ट"
+                            android:layout_gravity="center"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textSize="20dp">
+
+                        </TextView>
+
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_height="match_parent"
+                    android:layout_margin="3dp"
+                    app:cardCornerRadius="32dp"
+                    app:cardElevation="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/imageselection"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/posterbackgroundlist">
+
+                        </ImageView>
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="फोटोलिस्ट बैकग्राउंड"
+                            android:layout_gravity="center"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textSize="20dp">
+
+                        </TextView>
+
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+
+
+
             </GridLayout>
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:columnOrderPreserved="false"
-                android:alignmentMode="alignMargins"
-                android:padding="12dp"
-                android:columnCount="2"
-                android:rowCount="5">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_columnWeight="1"
-                    android:layout_height="match_parent"
-                    android:layout_margin="3dp"
-                    app:cardCornerRadius="32dp"
-                    app:cardElevation="10dp">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical"
-                        android:padding="10dp">
-
-                        <ImageView
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/up">
-
-                        </ImageView>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=" अ "
-                            android:layout_gravity="center"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            android:textSize="35dp">
-
-                        </TextView>
-
-
-
-                    </LinearLayout>
-
-
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_columnWeight="1"
-                    android:layout_height="match_parent"
-                    android:layout_margin="3dp"
-                    app:cardCornerRadius="32dp"
-                    app:cardElevation="10dp">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical"
-                        android:padding="10dp">
-
-                        <ImageView
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/up">
-
-                        </ImageView>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=" अ "
-                            android:layout_gravity="center"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            android:textSize="35dp">
-
-                        </TextView>
-
-
-
-                    </LinearLayout>
-
-
-                </androidx.cardview.widget.CardView>
-            </GridLayout>
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:columnOrderPreserved="false"
-                android:alignmentMode="alignMargins"
-                android:padding="12dp"
-                android:columnCount="2"
-                android:rowCount="5">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_columnWeight="1"
-                    android:layout_height="match_parent"
-                    android:layout_margin="3dp"
-                    app:cardCornerRadius="32dp"
-                    app:cardElevation="10dp">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical"
-                        android:padding="10dp">
-
-                        <ImageView
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/up">
-
-                        </ImageView>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=" अ "
-                            android:layout_gravity="center"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            android:textSize="35dp">
-
-                        </TextView>
-
-
-
-                    </LinearLayout>
-
-
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_columnWeight="1"
-                    android:layout_height="match_parent"
-                    android:layout_margin="3dp"
-                    app:cardCornerRadius="32dp"
-                    app:cardElevation="10dp">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical"
-                        android:padding="10dp">
-
-                        <ImageView
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/up">
-
-                        </ImageView>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=" अ "
-                            android:layout_gravity="center"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            android:textSize="35dp">
-
-                        </TextView>
-
-
-
-                    </LinearLayout>
-
-
-                </androidx.cardview.widget.CardView>
-            </GridLayout>
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:columnOrderPreserved="false"
-                android:alignmentMode="alignMargins"
-                android:padding="12dp"
-                android:columnCount="2"
-                android:rowCount="5">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_columnWeight="1"
-                    android:layout_height="match_parent"
-                    android:layout_margin="3dp"
-                    app:cardCornerRadius="32dp"
-                    app:cardElevation="10dp">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical"
-                        android:padding="10dp">
-
-                        <ImageView
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/up">
-
-                        </ImageView>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=" अ "
-                            android:layout_gravity="center"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            android:textSize="35dp">
-
-                        </TextView>
-
-
-
-                    </LinearLayout>
-
-
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_columnWeight="1"
-                    android:layout_height="match_parent"
-                    android:layout_margin="3dp"
-                    app:cardCornerRadius="32dp"
-                    app:cardElevation="10dp">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical"
-                        android:padding="10dp">
-
-                        <ImageView
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/up">
-
-                        </ImageView>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=" अ "
-                            android:layout_gravity="center"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            android:textSize="35dp">
-
-                        </TextView>
-
-
-
-                    </LinearLayout>
-
-
-                </androidx.cardview.widget.CardView>
-            </GridLayout>
 
         </LinearLayout>
     </ScrollView>
@@ -412,6 +316,7 @@
 
         <!-- First LinearLayout in GridLayout -->
         <LinearLayout
+            android:id="@+id/download"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -424,11 +329,11 @@
 
             <!-- ImageView -->
             <ImageView
-                android:id="@+id/image1"
+
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="8dp"
-                android:src="@drawable/happy"
+                android:src="@drawable/download"
                 android:contentDescription="@string/app_name" />
 
             <!-- TextView -->
@@ -436,13 +341,14 @@
                 android:id="@+id/text1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Text 1"
+                android:text="डाउनलोड"
                 android:gravity="center"
                 android:layout_gravity="center" />
         </LinearLayout>
 
         <!-- Second LinearLayout in GridLayout -->
         <LinearLayout
+            android:id="@+id/share"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -455,10 +361,11 @@
 
             <!-- ImageView -->
             <ImageView
+
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="8dp"
-                android:src="@drawable/happy"
+                android:src="@drawable/share"
                 android:contentDescription="@string/app_name" />
 
             <!-- TextView -->

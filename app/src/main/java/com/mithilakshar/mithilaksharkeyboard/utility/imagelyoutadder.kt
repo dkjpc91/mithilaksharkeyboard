@@ -1,42 +1,50 @@
 package com.mithilakshar.mithilaksharkeyboard.utility
 
+import android.Manifest
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.net.Uri
+import android.os.Build
 import android.provider.MediaStore
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.mithilakshar.mithilaksharkeyboard.R
+import com.mithilakshar.mithilaksharkeyboard.utility.ImagePicker.Companion.REQUEST_CODE
 
 class Imagelyoutadder(
     private val context: Context,
     private val parentLayout: RelativeLayout,
+    private val activityResultLauncher: ActivityResultLauncher<Intent>,
+    private val onImagePicked: (Uri) -> Unit
 
 ) {
 
     private var selectedBitmap: Bitmap? = null
-    private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
 
-    fun setActivityResultLauncher(launcher: ActivityResultLauncher<Intent>) {
-        this.activityResultLauncher = launcher
-    }
 
-    fun showImagePickerDialog(editText: EditText) {
+
+
+    fun showImagePickerDialog(relativelayout: RelativeLayout) {
         val dialogView = LayoutInflater.from(context).inflate(R.layout.dialogimageadder, null)
-        val button = dialogView.findViewById<Button>(R.id.button_select_image)
+        val button = dialogView.findViewById<Button>(R.id.selectimagebutton)
 
         val dialog = AlertDialog.Builder(context)
             .setTitle("Select an Image")
             .setView(dialogView)
             .setPositiveButton("OK") { _, _ ->
                 selectedBitmap?.let {
-                    addImageViewToLayout(it, editText)
+                    addImageViewToLayout(it, relativelayout)
                 }
             }
             .setNegativeButton("Cancel", null)
@@ -54,7 +62,10 @@ class Imagelyoutadder(
         activityResultLauncher.launch(intent)
     }
 
-    fun addImageViewToLayout(bitmap: Bitmap, editText: EditText) {
+
+
+
+    fun addImageViewToLayout(bitmap: Bitmap, relativelayout: RelativeLayout) {
         val newImageView = ImageView(context)
         newImageView.setImageBitmap(bitmap)
 
@@ -64,7 +75,6 @@ class Imagelyoutadder(
             RelativeLayout.LayoutParams.WRAP_CONTENT
         ).apply {
             // Position below the EditText or TextView
-            addRule(RelativeLayout.BELOW, R.id.edittext)
             // Optional: Add margin for spacing
             setMargins(0, 16, 0, 16) // Adjust margins as needed
         }
@@ -78,12 +88,17 @@ class Imagelyoutadder(
         // Apply ResizableTouchListener to the ImageView
         newImageView.setOnTouchListener(GestureTouchListener(context, newImageView))
 
-        // Request focus on the EditText
-        editText.requestFocus()
+
     }
 
 
 
-
-
 }
+
+
+
+
+
+
+
+

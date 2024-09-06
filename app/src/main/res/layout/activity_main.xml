@@ -82,7 +82,8 @@
 
             <RelativeLayout
                 android:background="@drawable/page1"
-
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:id="@+id/relative"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -93,39 +94,7 @@
 
 
 
-                <ScrollView
-                    android:visibility="gone"
-                    android:id="@+id/scrollview"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentStart="true"
 
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginBottom="0dp"
-                    android:background="@drawable/page1">
-
-                    <EditText
-                        android:id="@+id/edittext"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/custom_edittext_background"
-                        android:clickable="true"
-                        android:focusableInTouchMode="true"
-                        android:fontFamily="@font/mithilakshar_dkj"
-                        android:gravity="top"
-                        android:hint="हिंदी में टाइप करू या हिंदी में पेस्ट करू "
-                        android:inputType="textMultiLine"
-                        android:padding="10dp"
-                        android:textColor="@color/black"
-
-                        android:textSize="24sp"
-                        android:textStyle="bold"
-
-                        />
-
-
-                </ScrollView>
 
             </RelativeLayout>
 

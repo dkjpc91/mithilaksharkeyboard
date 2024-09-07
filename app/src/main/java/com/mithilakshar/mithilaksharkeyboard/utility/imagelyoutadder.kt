@@ -74,10 +74,11 @@ class Imagelyoutadder(
             RelativeLayout.LayoutParams.WRAP_CONTENT,
             RelativeLayout.LayoutParams.WRAP_CONTENT
         ).apply {
-            // Position below the EditText or TextView
-            // Optional: Add margin for spacing
-            setMargins(0, 16, 0, 16) // Adjust margins as needed
+            // Center the TextView in the parent layout
+            addRule(RelativeLayout.CENTER_IN_PARENT)
+            setMargins(1, 1, 1, 1) // Adjust margins as needed
         }
+
 
         newImageView.layoutParams = layoutParams
 

@@ -55,6 +55,7 @@
                         android:src="@drawable/hamburger"
                         ads:tint="#03A9F4" />
                     <TextView
+                        android:id="@+id/bannertext"
                         android:fontFamily="@font/mithilakshar_dkj"
                         android:layout_width="match_parent"
                         android:layout_height="80dp"

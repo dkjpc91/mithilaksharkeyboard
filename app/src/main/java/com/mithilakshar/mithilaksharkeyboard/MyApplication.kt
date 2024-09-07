@@ -2,12 +2,19 @@ package com.mithilakshar.mithilaksharkeyboard
 
 import android.app.Application
 import com.google.android.gms.ads.MobileAds
+import com.mithilakshar.mithilaksharkeyboard.Room.UpdatesDatabase
 import com.mithilakshar.mithilaksharkeyboard.utility.AppOpenAdManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 
 class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
+        val database: UpdatesDatabase by lazy {
+            UpdatesDatabase.getDatabase(this)
+        }
 
         // Initialize the Mobile Ads SDK
         MobileAds.initialize(this) { initializationStatus ->

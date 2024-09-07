@@ -3,13 +3,9 @@ package com.mithilakshar.mithilaksharkeyboard
 import ColorPickerDialog
 import PermissionManager
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
 import android.net.Uri
-import android.os.Build
 
 import android.os.Bundle
 import android.provider.MediaStore
@@ -25,7 +21,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-
+import android.view.WindowManager
+import androidx.lifecycle.Observer
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -37,17 +34,36 @@ import androidx.activity.result.contract.ActivityResultContracts
 
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.navigation.NavigationView
+import com.google.android.play.core.appupdate.AppUpdateManager
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory
+import com.google.android.play.core.install.InstallStateUpdatedListener
+import com.google.android.play.core.install.model.AppUpdateType
+import com.google.android.play.core.install.model.InstallStatus
+import com.google.android.play.core.install.model.UpdateAvailability
+import com.google.android.play.core.ktx.isFlexibleUpdateAllowed
+import com.google.android.play.core.ktx.isImmediateUpdateAllowed
+import com.mithilakshar.mithilaksharkeyboard.Dialog.Networkdialog
+import com.mithilakshar.mithilaksharkeyboard.Room.UpdatesDao
+import com.mithilakshar.mithilaksharkeyboard.Room.UpdatesDatabase
 import com.mithilakshar.mithilaksharkeyboard.databinding.BottomsheetBinding
 import com.mithilakshar.mithilaksharkeyboard.utility.CustomMenu
+import com.mithilakshar.mithilaksharkeyboard.utility.FirebaseFileDownloader
 import com.mithilakshar.mithilaksharkeyboard.utility.ImagePicker
-import com.mithilakshar.mithilaksharkeyboard.utility.ImageSelectorDialog
 import com.mithilakshar.mithilaksharkeyboard.utility.Imagelyoutadder
+import com.mithilakshar.mithilaksharkeyboard.utility.NetworkManager
+import com.mithilakshar.mithilaksharkeyboard.utility.RewardAdManager
 import com.mithilakshar.mithilaksharkeyboard.utility.TextViewAdder
+import com.mithilakshar.mithilaksharkeyboard.utility.dbDownloader
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import java.io.File
+import kotlin.time.Duration.Companion.seconds
 
 
 class MainActivity : AppCompatActivity(),ColorPickerDialog.ColorPickerListener, NavigationView.OnNavigationItemSelectedListener {
@@ -55,8 +71,12 @@ class MainActivity : AppCompatActivity(),ColorPickerDialog.ColorPickerListener, 
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var adView: AdView
 
-    private lateinit var textViewAdder: TextViewAdder
+    private lateinit var appUpdateManager: AppUpdateManager
+    private val updateType = AppUpdateType.IMMEDIATE
 
+    private lateinit var updatesDao: UpdatesDao
+    private lateinit var fileDownloader: FirebaseFileDownloader
+    private lateinit var textViewAdder: TextViewAdder
 
     private lateinit var navigationView: NavigationView
     private lateinit var buttonToggleDrawer: ImageButton
@@ -70,7 +90,7 @@ class MainActivity : AppCompatActivity(),ColorPickerDialog.ColorPickerListener, 
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
 
     private lateinit var permissionLauncher: ActivityResultLauncher<String>
-
+    private lateinit var rewardAdManager: RewardAdManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,6 +103,35 @@ class MainActivity : AppCompatActivity(),ColorPickerDialog.ColorPickerListener, 
             insets
         }
 
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_SECURE,
+            WindowManager.LayoutParams.FLAG_SECURE
+        )
+
+        appUpdateManager = AppUpdateManagerFactory.create(applicationContext)
+        if (updateType == AppUpdateType.FLEXIBLE) {
+            appUpdateManager.registerListener(installStateUpdatedListener)
+        }
+        checkForAppUpdate()
+        val networkdialog = Networkdialog(this)
+        val networkManager = NetworkManager(this)
+        networkManager.observe(this, {
+            if (!it) {
+                if (!networkdialog.isShowing) {
+                    networkdialog.show()
+                }
+
+            } else {
+                if (networkdialog.isShowing) {
+                    networkdialog.dismiss()
+                }
+
+            }
+        })
+
+        rewardAdManager = RewardAdManager(this)
+        rewardAdManager.initialize()
+
         MobileAds.initialize(this) {}
         adView = binding.adView
         val adRequest = AdRequest.Builder().build()
@@ -91,6 +140,18 @@ class MainActivity : AppCompatActivity(),ColorPickerDialog.ColorPickerListener, 
         linear=binding.relative
         textViewAdder = TextViewAdder(this,linear,true)
 
+
+
+        fileDownloader = FirebaseFileDownloader(this)
+        updatesDao = UpdatesDatabase.getDatabase(applicationContext).UpdatesDao()
+
+        val dbDownloader= dbDownloader(updatesDao,fileDownloader)
+
+        dbDownloader.observeFileExistence("Imageslist",this,lifecycleScope,1,this)
+
+        updatesDao.getUniqueStringById(2).observe(this, Observer { uniqueString ->
+            binding.bannertext.text=uniqueString.toString()
+        })
 
 
 
@@ -224,15 +285,12 @@ class MainActivity : AppCompatActivity(),ColorPickerDialog.ColorPickerListener, 
         binding.fab.setOnClickListener{
 
            // binding.linearLayout.visibility=View.GONE
-            val customAlertDialog = CustomMenu(this,binding.relative,imagePicker,imagelyoutadder,permissionLauncher)
+            val customAlertDialog = CustomMenu(this,binding.relative,imagePicker,imagelyoutadder,updatesDao,rewardAdManager)
             customAlertDialog.showDialog()
 
 
         }
 
-        binding.main.setOnClickListener{
-
-        }
 
 
         /*       textView.setOnClickListener {
@@ -250,8 +308,64 @@ class MainActivity : AppCompatActivity(),ColorPickerDialog.ColorPickerListener, 
 
     }
 
+    //updateappstart.
 
+    private val installStateUpdatedListener = InstallStateUpdatedListener {
+        if (it.installStatus() == InstallStatus.DOWNLOADED) {
 
+            Toast.makeText(this, "Download Completed", Toast.LENGTH_LONG).show()
+            lifecycleScope.launch {
+                delay(5.seconds)
+                appUpdateManager.completeUpdate()
+            }
+        }
+    }
+    private fun checkForAppUpdate() {
+
+        appUpdateManager.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->
+            val isUpdateAvailable = appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+            val isUpdateAllowed = when (updateType) {
+                AppUpdateType.IMMEDIATE -> appUpdateInfo.isImmediateUpdateAllowed
+                AppUpdateType.FLEXIBLE -> appUpdateInfo.isFlexibleUpdateAllowed
+                else -> false
+            }
+
+            if (isUpdateAvailable && isUpdateAllowed) {
+                performPreUpdateTasks {
+                    appUpdateManager.startUpdateFlowForResult(
+                        appUpdateInfo, updateType, this, 113
+                    )
+                }
+            }
+        }
+    }
+    private fun performPreUpdateTasks(onComplete: () -> Unit) {
+        // Directory to delete
+        val downloadDirectory = File(this.getExternalFilesDir(null), "test")
+
+        // Function to delete the directory and its contents
+        fun deleteDirectory(directory: File) {
+            if (directory.isDirectory) {
+                val files = directory.listFiles()
+                files?.forEach {
+                    if (it.isDirectory) {
+                        deleteDirectory(it)
+                    } else {
+                        it.delete()
+                    }
+                }
+            }
+            directory.delete()
+        }
+
+        // Perform directory deletion
+        deleteDirectory(downloadDirectory)
+
+        // Proceed with the update
+        onComplete()
+    }
+
+    //updateappstop.
 
 
 
@@ -288,23 +402,8 @@ class MainActivity : AppCompatActivity(),ColorPickerDialog.ColorPickerListener, 
                    titleView.text = "रंगक चुनाव करू"
                 }
 
-                R.id.background -> {
-                iconView.setImageResource(R.drawable.palette)
-                titleView.text = "बैकग्राउंड के चुनाव करू "
-            }
-                R.id.mobileimage -> {
-                    iconView.setImageResource(R.drawable.palette)
-                    titleView.text = "अपन मनपसंद बैकग्राउंड चुनू "
-                }
 
-                R.id.imageviewadder -> {
-                    iconView.setImageResource(R.drawable.palette)
-                    titleView.text = "image चुनू "
-                }
-                R.id.textadder -> {
-                    iconView.setImageResource(R.drawable.palette)
-                    titleView.text = "text चुनू "
-                }
+
             }
             val layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -341,32 +440,10 @@ class MainActivity : AppCompatActivity(),ColorPickerDialog.ColorPickerListener, 
                 colorPickerDialog.show()
                 Log.d("colorpicker", "Color picker dialog shown")
             }
-            R.id.mobileimage -> {
 
 
 
 
-            }
-
-            R.id.background -> {
-                // Handle background color action
-
-
-            }
-
-            R.id.imageviewadder -> {
-                // Handle background color action
-
-              // imagelyoutadder.showImagePickerDialog(editText)
-
-            }
-
-            R.id.textadder -> {
-                // Handle background color action
-
-                textViewAdder.showTextInputDialog()
-
-            }
         }
 
         findViewById<DrawerLayout>(R.id.drawer_layout).closeDrawer(GravityCompat.START)
@@ -375,11 +452,6 @@ class MainActivity : AppCompatActivity(),ColorPickerDialog.ColorPickerListener, 
 
 
 
-
-/*    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        imagePicker.handlePermissionsResult(requestCode, grantResults)
-    }*/
 
     override fun onRequestPermissionsResult(
         requestCode: Int,

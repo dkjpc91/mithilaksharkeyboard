@@ -17,7 +17,7 @@ import android.widget.Toast
 
 class GestureTouchListener(private val context: Context,private val view: View) : GestureDetector.SimpleOnGestureListener(), View.OnTouchListener {
     private val handler = Handler(Looper.getMainLooper())
-    private val longPressTimeout = ViewConfiguration.getLongPressTimeout() + 1000
+    private val longPressTimeout = ViewConfiguration.getLongPressTimeout() + 2000
     private var xDelta = 0f
     private var yDelta = 0f
     private var initialTouchX = 0f

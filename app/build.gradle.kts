@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
+    kotlin("kapt")
 }
 
 android {
@@ -40,14 +41,28 @@ android {
 }
 
 dependencies {
-    implementation ("androidx.activity:activity-ktx:1.8.0")
-    implementation ("androidx.fragment:fragment-ktx:1.6.0")
 
 
-    implementation ("androidx.core:core-ktx:1.12.0") // Check for the latest version
-    implementation ("androidx.activity:activity-ktx:1.7.2") // Check for the latest version
+    implementation (libs.glide)
+    implementation(libs.app.update)
+    implementation(libs.app.update.ktx)
 
-    implementation ("com.google.android.gms:play-services-ads:22.1.0")
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.kotlinx.coroutines.android)
+
+    annotationProcessor(libs.androidx.room.room.compiler)
+    kapt(libs.androidx.room.room.compiler)
+    implementation(libs.androidx.room.ktx)
+
+
+    implementation (libs.androidx.activity.ktx)
+    implementation (libs.androidx.fragment.ktx)
+
+
+    implementation (libs.androidx.core.ktx.v1120) // Check for the latest version
+    implementation (libs.androidx.activity.ktx.v172) // Check for the latest version
+
+    implementation (libs.play.services.ads)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -56,6 +71,9 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.recyclerview)
     implementation(libs.firebase.inappmessaging.display)
+    implementation(libs.firebase.storage)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.auth)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

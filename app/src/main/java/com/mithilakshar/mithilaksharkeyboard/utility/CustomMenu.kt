@@ -1,5 +1,6 @@
 package com.mithilakshar.mithilaksharkeyboard.utility
 
+import ImageLayoutAdderUrl
 import PermissionManager
 import android.app.Activity
 import android.content.Context
@@ -53,10 +54,10 @@ class CustomMenu(
 
         rewardAdManager.loadRewardedAd(
             onAdLoaded = {
-                Toast.makeText(context, "Rewarded Ad Loaded", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(context, "Rewarded Ad Loaded", Toast.LENGTH_SHORT).show()
             },
             onAdFailedToLoad = { error ->
-                Toast.makeText(context, "Failed to load ad: $error", Toast.LENGTH_SHORT).show()
+               // Toast.makeText(context, "Failed to load ad: $error", Toast.LENGTH_SHORT).show()
             }
         )
         val share: LinearLayout = customView.findViewById(R.id.share)
@@ -98,7 +99,7 @@ class CustomMenu(
 
         shareapp.setOnClickListener {
             // Ensure 'context' is the proper context for the dialog, e.g., activity or application context
-            val shareText = "नीचा देल गेल लिंक पर क्लिक क मिथिला पंचांग ऐप्प डाउनलोड करू .\n https://play.google.com/store/apps/details?id=${context.packageName} \n\n\n @mithilakshar13"
+            val shareText = "नीचा देल गेल लिंक पर क्लिक क मिथिलाक्षर पोस्टर ऐप्प डाउनलोड करू .\n https://play.google.com/store/apps/details?id=${context.packageName} \n\n\n @mithilakshar13"
 
             // Create the intent to share the text
             val intent = Intent(Intent.ACTION_SEND).apply {
@@ -117,8 +118,9 @@ class CustomMenu(
                 onPermissionGranted = {
                     // Task specific to audio selection
                     // Add your audio selection task here
-                    Toast.makeText(context, "succes imageselector", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(context, "succes imageselector", Toast.LENGTH_SHORT).show()
                     imagelyoutadder.showImagePickerDialog(main as RelativeLayout)
+                    alertDialog.dismiss()
                 }
             )
 
@@ -172,7 +174,19 @@ class CustomMenu(
             val imageResources = listOf(
                 R.drawable.page,
                 R.drawable.page1,
-                R.drawable.up
+                R.drawable.page2,
+                R.drawable.page3,
+                R.drawable.page4,
+                R.drawable.page5,
+                R.drawable.page6,
+                R.drawable.page7,
+                R.drawable.page8,
+                R.drawable.page9,
+                R.drawable.page10,
+                R.drawable.page11,
+                R.drawable.page12,
+                R.drawable.page13,
+                R.drawable.page14
             )
             val imageSelectorDialog = ImageSelectorDialog(
                 context = context,

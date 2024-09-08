@@ -10,13 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginBottom="16dp"
-        android:scaleType="centerCrop"
-        android:background="@color/black" />
+        android:scaleType="center"
+        android:src="@drawable/gallery"
+  />
 
     <Button
+        android:layout_gravity="center"
         android:id="@+id/selectimagebutton"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select Image" />
+        android:text="फोटो चुनाव करू " />
 
 </LinearLayout>

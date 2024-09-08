@@ -41,7 +41,7 @@ android {
 }
 
 dependencies {
-
+    implementation ("com.github.skydoves:colorpickerview:2.3.0")
 
     implementation (libs.glide)
     implementation(libs.app.update)
@@ -49,6 +49,8 @@ dependencies {
 
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.firebase.analytics)
+    implementation(libs.play.services.measurement.api)
 
     annotationProcessor(libs.androidx.room.room.compiler)
     kapt(libs.androidx.room.room.compiler)

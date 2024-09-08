@@ -27,7 +27,7 @@
         android:id="@+id/header_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="दीपक कुमार झा द्वारा डेवलप्ड"
+        android:text="मिथिलाक्षर पोस्टर"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@android:color/white"
         android:layout_gravity="center"

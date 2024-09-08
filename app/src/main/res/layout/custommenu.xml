@@ -64,7 +64,7 @@
                             android:layout_width="120dp"
                             android:layout_height="120dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/posterbackgroundlist"/>
+                            android:src="@drawable/bg"/>
 
                         <TextView
                             android:gravity="center"
@@ -113,7 +113,7 @@
                         android:gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="फोटोलिस्ट बैकग्राउंड"
+                        android:text="मनपसंद \n लिबैकग्राउंड"
                         android:layout_gravity="center"
                         android:textColor="@color/black"
                         android:textStyle="bold"
@@ -147,13 +147,13 @@
                             android:layout_width="120dp"
                             android:layout_height="120dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/posterbackgroundlist"/>
+                            android:src="@drawable/mithilakshar"/>
 
                         <TextView
                             android:gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="बैकग्राउंड \n लिस्ट"
+                            android:text="मिथिलाक्षर \n लिखू"
                             android:layout_gravity="center"
                             android:textColor="@color/black"
                             android:textStyle="bold"
@@ -188,7 +188,7 @@
                             android:layout_width="120dp"
                             android:layout_height="120dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/posterbackgroundlist">
+                            android:src="@drawable/hindi">
 
                         </ImageView>
 
@@ -196,47 +196,7 @@
                             android:gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="फोटोलिस्ट बैकग्राउंड"
-                            android:layout_gravity="center"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            android:textSize="20dp">
-
-                        </TextView>
-
-
-
-                    </LinearLayout>
-
-
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_columnWeight="1"
-                    android:layout_height="match_parent"
-                    android:layout_margin="3dp"
-                    app:cardCornerRadius="32dp"
-                    app:cardElevation="10dp">
-
-                    <LinearLayout
-                        android:id="@+id/imagelist"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical"
-                        android:padding="10dp">
-
-                        <ImageView
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/posterbackgroundlist"/>
-
-                        <TextView
-                            android:gravity="center"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="बैकग्राउंड \n लिस्ट"
+                            android:text="देवनागरी/अंग्रेजी   लिखू"
                             android:layout_gravity="center"
                             android:textColor="@color/black"
                             android:textStyle="bold"
@@ -252,48 +212,8 @@
                 </androidx.cardview.widget.CardView>
 
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_columnWeight="1"
-                    android:layout_height="match_parent"
-                    android:layout_margin="3dp"
-                    app:cardCornerRadius="32dp"
-                    app:cardElevation="10dp">
-
-                    <LinearLayout
-                        android:id="@+id/shareapp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical"
-                        android:padding="10dp">
-
-                        <ImageView
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/posterbackgroundlist">
-
-                        </ImageView>
-
-                        <TextView
-                            android:gravity="center"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="share"
-                            android:layout_gravity="center"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            android:textSize="20dp">
-
-                        </TextView>
 
 
-
-                    </LinearLayout>
-
-
-                </androidx.cardview.widget.CardView>
 
 
 
@@ -317,7 +237,7 @@
                             android:layout_width="120dp"
                             android:layout_height="120dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/posterbackgroundlist">
+                            android:src="@drawable/picture">
 
                         </ImageView>
 
@@ -325,7 +245,90 @@
                             android:gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="फोटोलिस्ट बैकग्राउंड"
+                            android:text="फोटो \n लिस्ट "
+                            android:layout_gravity="center"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textSize="20dp">
+
+                        </TextView>
+
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_height="match_parent"
+                    android:layout_margin="3dp"
+                    app:cardCornerRadius="32dp"
+                    app:cardElevation="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/imagelist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/gallery"/>
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="मनपसंद \nफोटो "
+                            android:layout_gravity="center"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textSize="20dp">
+
+                        </TextView>
+
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_height="match_parent"
+                    android:layout_margin="3dp"
+                    app:cardCornerRadius="32dp"
+                    app:cardElevation="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/shareapp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/appshare">
+
+                        </ImageView>
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ऐप \n शेयर"
                             android:layout_gravity="center"
                             android:textColor="@color/black"
                             android:textStyle="bold"
@@ -341,8 +344,6 @@
                 </androidx.cardview.widget.CardView>
 
 
-
-
             </GridLayout>
 
 
@@ -350,7 +351,7 @@
     </ScrollView>
 
     <GridLayout
- android:background="@drawable/rounded_square"
+ android:background="@drawable/downloadsquare"
         android:id="@+id/grid1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -362,6 +363,7 @@
 
         <!-- First LinearLayout in GridLayout -->
         <LinearLayout
+
             android:id="@+id/download"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -375,7 +377,7 @@
 
             <!-- ImageView -->
             <ImageView
-
+                android:layout_gravity="center"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="8dp"
@@ -388,8 +390,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="डाउनलोड"
+                android:layout_margin="2dp"
                 android:gravity="center"
-                android:layout_gravity="center" />
+                android:layout_gravity="center_horizontal" />
         </LinearLayout>
 
         <LinearLayout
@@ -411,7 +414,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="8dp"
-                android:src="@drawable/download"
+                android:src="@drawable/reboot"
                 android:contentDescription="@string/app_name" />
 
             <!-- TextView -->
@@ -419,9 +422,9 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:layout_margin="2dp"
                 android:gravity="center"
-                android:layout_gravity="center" />
+                android:layout_gravity="center_horizontal"  />
         </LinearLayout>
 
         <!-- Second LinearLayout in GridLayout -->
@@ -448,11 +451,12 @@
 
             <!-- TextView -->
             <TextView
+                android:layout_margin="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Text 2"
+                android:text="पोस्टर शेयर "
                 android:gravity="center"
-                android:layout_gravity="center" />
+                android:layout_gravity="center_horizontal" />
         </LinearLayout>
     </GridLayout>
 

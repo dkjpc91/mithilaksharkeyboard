@@ -32,13 +32,13 @@ class GestureTouchListener(private val context: Context,private val view: View) 
     private val scaleGestureDetector = ScaleGestureDetector(context, ScaleGestureListener())
     private val longPressRunnable = Runnable {
         val dialog = LongPressMenuDialog(context, view, onDelete = {
-            Toast.makeText(context, "View Deleted", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "संसोधन आइटम डिलीट भ गेल ", Toast.LENGTH_SHORT).show()
             val parentViewGroup = view.parent as? ViewGroup
             parentViewGroup?.removeView(view)
         })
         dialog.show()
 
-        Toast.makeText(context, "Long press detected", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(context, "Long press detected", Toast.LENGTH_SHORT).show()
     }
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
         if (v == null || event == null) return false
@@ -96,7 +96,7 @@ class GestureTouchListener(private val context: Context,private val view: View) 
 
     override fun onLongPress(e: MotionEvent) {
         super.onLongPress(e)
-        Toast.makeText(context, "reached here", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "आइटम संसोधन मेनू ओपन भ रहल", Toast.LENGTH_SHORT).show()
         if(view is EditText){
             Toast.makeText(context, "openkey", Toast.LENGTH_SHORT).show()
             openKeyboard(context, view)

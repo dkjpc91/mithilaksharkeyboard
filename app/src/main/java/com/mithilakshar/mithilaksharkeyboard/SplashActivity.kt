@@ -9,6 +9,7 @@ import android.os.Handler
 import android.os.Looper
 import android.content.Intent
 import android.util.Log
+import android.view.animation.AnimationUtils
 import com.google.android.gms.ads.MobileAds
 import com.mithilakshar.mithilaksharkeyboard.databinding.ActivitySplashBinding
 import com.mithilakshar.mithilaksharkeyboard.utility.AppOpenAdManager
@@ -25,6 +26,14 @@ class SplashActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        val fadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fadein)
+
+        binding.apply {
+            splash.startAnimation(fadeInAnimation)
+            splashTxt.startAnimation(fadeInAnimation)
+
         }
 
 

@@ -8,7 +8,6 @@
     <ImageView
         android:id="@+id/menuicon"
         android:layout_width="wrap_content"
-        android:src="@drawable/zigzag"
         android:layout_height="45dp" />
 
 

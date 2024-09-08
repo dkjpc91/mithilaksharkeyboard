@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:backgroundTint="#FDF187"
+            android:backgroundTint="#CBFBEE"
             app:cardCornerRadius="8dp"
             app:layout_constraintTop_toBottomOf="@id/app_name"
             app:layout_constraintBottom_toTopOf="@id/imageContainer"
@@ -53,8 +53,9 @@
 
                     <!-- Instructions text here -->
                     <TextView
-                        android:fontFamily="@font/mithilakshar_dkj"
+                        android:fontFamily="@font/kalam"
                         android:id="@+id/instructionsText"
+                        android:textColor="#D20E04"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/instructions"

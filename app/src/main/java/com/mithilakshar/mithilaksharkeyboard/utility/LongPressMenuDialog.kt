@@ -18,7 +18,7 @@ class LongPressMenuDialog(
     private val onDelete: (View) -> Unit
 ) {
     private var textSize = 20
-    private var selectedColor = 0xFF001000.toInt()
+    private var selectedColor = 0xFFFFFFFF.toInt()
     private var viewHeight = longPressedView.layoutParams.height
     private var viewWidth = longPressedView.layoutParams.width
 
@@ -105,6 +105,7 @@ class LongPressMenuDialog(
         // Initialize Delete Button
         deleteButton.setOnClickListener {
             onDelete(longPressedView)
+            alertDialog.dismiss()
         }
 
         // Initialize Width SeekBar
@@ -114,7 +115,7 @@ class LongPressMenuDialog(
         widthSeekBar.setOnSeekBarChangeListener(createSeekBarChangeListener())
 
         // Initialize Height SeekBar
-        heightSeekBar.max = 2500
+        heightSeekBar.max = 3500
         heightSeekBar.min = 200
         heightSeekBar.progress = viewHeight
         heightSeekBar.setOnSeekBarChangeListener(createSeekBarChangeListener())
@@ -122,14 +123,14 @@ class LongPressMenuDialog(
         // Initialize Move to Top Button
         moveToTopButton.setOnClickListener {
             bringViewToTop(longPressedView)
-            Toast.makeText(context, "View moved to top", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "संसोधन आइटम ऊपर आबि गेल ", Toast.LENGTH_SHORT).show()
         }
 
         // Build and show AlertDialog
         alertDialog = AlertDialog.Builder(context)
             .setView(dialogView)
-            .setTitle("Customize")
-            .setNegativeButton("Cancel", null)
+            .setTitle("आइटम संसोधन मेनू")
+            .setNegativeButton("आगू", null)
             .create()
 
         alertDialog.show()

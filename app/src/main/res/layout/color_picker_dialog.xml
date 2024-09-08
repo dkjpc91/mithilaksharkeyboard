@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -14,39 +14,30 @@
         android:textSize="30sp"
         android:textStyle="bold"/>
 
-    <View
-        android:layout_marginTop="60dp"
-        android:layout_gravity="center"
-        android:id="@+id/colorView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="#F83F05"/>
+    <com.skydoves.colorpickerview.ColorPickerView
+        android:id="@+id/colorPickerView"
+        android:layout_width="300dp"
+        android:layout_height="300dp" />
 
-    <SeekBar
+    <com.skydoves.colorpickerview.sliders.AlphaSlideBar
         android:layout_marginTop="20dp"
-        android:id="@+id/seekBarRed"
+        android:id="@+id/alphaSlideBar"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:max="255"
-        android:progress="255"/>
+        android:layout_height="wrap_content"
+        app:selector_AlphaSlideBar="@drawable/colorpickerview_wheel"
+        app:borderColor_AlphaSlideBar="@android:color/darker_gray"
+        app:borderSize_AlphaSlideBar="5"/>
 
-    <SeekBar
+    <com.skydoves.colorpickerview.sliders.BrightnessSlideBar
         android:layout_marginTop="20dp"
-        android:id="@+id/seekBarGreen"
-
+        android:id="@+id/brightnessSlide"
         android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:max="255"
-        android:progress="0"/>
+        android:layout_height="wrap_content"
+        app:selector_BrightnessSlider="@drawable/colorpickerview_wheel"
+        app:borderColor_BrightnessSlider="@android:color/darker_gray"
+        app:borderSize_BrightnessSlider="5"/>
 
-    <SeekBar
-        android:layout_marginTop="20dp"
 
-        android:id="@+id/seekBarBlue"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:max="255"
-        android:progress="0"/>
 
 
 </LinearLayout>

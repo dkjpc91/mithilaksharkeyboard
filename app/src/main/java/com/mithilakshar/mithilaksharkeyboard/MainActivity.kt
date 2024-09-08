@@ -150,7 +150,9 @@ class MainActivity : AppCompatActivity(),ColorPickerDialog.ColorPickerListener, 
         dbDownloader.observeFileExistence("Imageslist",this,lifecycleScope,1,this)
 
         updatesDao.getUniqueStringById(2).observe(this, Observer { uniqueString ->
-            binding.bannertext.text=uniqueString.toString()
+
+
+
         })
 
 
@@ -399,7 +401,7 @@ class MainActivity : AppCompatActivity(),ColorPickerDialog.ColorPickerListener, 
             when (menuItem.itemId) {
                 R.id.fontcolor -> {
                    iconView.setImageResource(R.drawable.palette)
-                   titleView.text = "रंगक चुनाव करू"
+                   titleView.text = "ऐप शेयर करू "
                 }
 
 
@@ -436,9 +438,16 @@ class MainActivity : AppCompatActivity(),ColorPickerDialog.ColorPickerListener, 
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         when (p0.itemId) {
             R.id.fontcolor -> {
-                val colorPickerDialog = ColorPickerDialog(this, this)
-                colorPickerDialog.show()
-                Log.d("colorpicker", "Color picker dialog shown")
+                val shareText = "नीचा देल गेल लिंक पर क्लिक क मिथिलाक्षर पोस्टर ऐप्प डाउनलोड करू .\n https://play.google.com/store/apps/details?id=${this.packageName} \n\n\n @mithilakshar13"
+
+                // Create the intent to share the text
+                val intent = Intent(Intent.ACTION_SEND).apply {
+                    putExtra(Intent.EXTRA_TEXT, shareText)
+                    type = "text/plain"
+                }
+
+                // Start the sharing activity
+                startActivity(Intent.createChooser(intent, "साझा करू : "))
             }
 
 

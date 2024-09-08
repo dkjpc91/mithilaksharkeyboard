@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="110dp"
                 android:layout_weight="1"
-                android:background="#D0D6F8"
+                android:background="@drawable/rounded_edit_text"
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +39,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:background="#FFEB3B"
+                    android:background="@drawable/header_background"
                     android:gravity="center"
                     android:orientation="horizontal">
 

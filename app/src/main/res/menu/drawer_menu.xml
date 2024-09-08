@@ -6,27 +6,7 @@
         android:title=""
         />
 
-    <item
-        android:id="@+id/background"
-        android:title=""
-        />
-    />
 
-    <item
-        android:id="@+id/mobileimage"
-        android:title=""
-        />
-
-
-    <item
-        android:id="@+id/imageviewadder"
-        android:title=""
-        />
-
-    <item
-        android:id="@+id/textadder"
-        android:title=""
-        />
 
 
 

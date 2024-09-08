@@ -24,21 +24,21 @@ class TextViewAdder(
         val text_description = dialogView.findViewById<TextView>(R.id.text_description)
 
         if (!applyCustomFont){
-            text_description.text="Hindi /English"
-            text_heading.text="HINDI script"
+            text_description.text="देवनागरी या अंग्रेजी अन्य लिपि में लिखू "
+            text_heading.text="देवनागरी "
 
         }
 
 
         val dialog = AlertDialog.Builder(context)
             .setView(dialogView)
-            .setPositiveButton("OK") { _, _ ->
+            .setPositiveButton("आगू") { _, _ ->
                 val enteredText = editText.text.toString()
                 if (enteredText.isNotEmpty()) {
                     addTextViewToLayout(enteredText)
                 }
             }
-            .setNegativeButton("Cancel", null)
+            .setNegativeButton("कैंसिल करू", null)
             .create()
 
         dialog.show()
@@ -47,8 +47,8 @@ class TextViewAdder(
     private fun addTextViewToLayout(text: String) {
         val newTextView = TextView(context)
         newTextView.text = text
-        newTextView.textSize = 20f // Set text size to 20
-
+        newTextView.textSize = 24f // Set text size to 20
+        newTextView.gravity = android.view.Gravity.CENTER
         // Convert 100 dp to pixels
         val displayMetrics = context.resources.displayMetrics
         val widthInPixels = (displayMetrics.widthPixels - dpToPx(100, displayMetrics)).toInt()

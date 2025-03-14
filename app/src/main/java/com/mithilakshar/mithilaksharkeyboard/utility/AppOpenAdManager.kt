@@ -1,3 +1,4 @@
+/*
 package com.mithilakshar.mithilaksharkeyboard.utility
 
 import android.app.Activity
@@ -75,3 +76,4 @@ object AppOpenAdManager : Application.ActivityLifecycleCallbacks {
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {}
     override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
 }
+*/

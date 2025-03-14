@@ -3,28 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@android:color/transparent"
     android:padding="16dp">
 
     <TextView
+        android:background="@drawable/rounded_square"
+        android:layout_gravity="center"
         android:id="@+id/second_dialog_title"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Second Dialog"
-        android:textSize="18sp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textColor="@color/black"
+        android:layout_height="200dp"
+        android:text="आहाँ के पोस्टर डाउनलोड भ गेल ।  अहि ऐप के शेयर जरूर करू।  धन्यवाद। "
+        android:textSize="20sp"
         android:textStyle="bold"
         android:paddingBottom="16dp" />
 
-    <Button
-        android:id="@+id/button_ok"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="OK" />
-
-    <Button
-        android:id="@+id/button_cancel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cancel"
-        android:layout_marginTop="8dp" />
 
 </LinearLayout>

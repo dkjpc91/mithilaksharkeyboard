@@ -19,12 +19,13 @@
         android:theme="@style/Theme.MithilaksharKeyboard"
         tools:targetApi="31">
         <activity
-            android:name=".HomeActivity"
-            android:exported="true" >
-
-        </activity>
+            android:name=".UI.DisplayLayoutActivity"
+            android:exported="false" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".UI.LayoutListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UI.LayoutGenerator"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,27 +34,23 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".HomeActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-
-
-        </activity>
-
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713" />
-        <property
-            android:name="android.adservices.AD_SERVICES_CONFIG"
-            android:resource="@xml/gma_ad_services_config"
-            tools:replace="android:resource" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
 
         <provider
             android:name=".utility.BitmapContentProvider"
             android:authorities="${applicationId}.bitmapprovider"
             android:exported="false"
-            android:grantUriPermissions="true"></provider>
+            android:grantUriPermissions="true" />
     </application>
-
 
 </manifest>

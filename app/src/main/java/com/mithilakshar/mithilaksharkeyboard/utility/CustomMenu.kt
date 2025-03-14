@@ -31,7 +31,6 @@ class CustomMenu(
     private val imagePicker: ImagePicker,
     private val imagelyoutadder: Imagelyoutadder,
     private val updatesDao: UpdatesDao,
-    private val  rewardAdManager: RewardAdManager
 
 ) {
     val viewDownloader = sViewDownloader(context)
@@ -52,14 +51,7 @@ class CustomMenu(
         val alertDialog: AlertDialog = builder.create()
         alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        rewardAdManager.loadRewardedAd(
-            onAdLoaded = {
-                //Toast.makeText(context, "Rewarded Ad Loaded", Toast.LENGTH_SHORT).show()
-            },
-            onAdFailedToLoad = { error ->
-               // Toast.makeText(context, "Failed to load ad: $error", Toast.LENGTH_SHORT).show()
-            }
-        )
+
         val share: LinearLayout = customView.findViewById(R.id.share)
         val download: LinearLayout = customView.findViewById(R.id.download)
         val add: LinearLayout = customView.findViewById(R.id.add)
@@ -91,7 +83,7 @@ class CustomMenu(
 
 
 
-            showRewardAd(share,download,add)
+    /*        showRewardAd(share,download,add)*/
 
 
 
@@ -254,32 +246,17 @@ class CustomMenu(
         val secondDialogView = inflater.inflate(R.layout.prompt, null)
 
         val builder = AlertDialog.Builder(context)
-            .setTitle("Second Dialog")
+
             .setView(secondDialogView)
             .setCancelable(true)
 
-        val buttonOk: Button = secondDialogView.findViewById(R.id.button_ok)
-        val buttonCancel: Button = secondDialogView.findViewById(R.id.button_cancel)
 
-        buttonOk.setOnClickListener {
-            Toast.makeText(context, "OK clicked", Toast.LENGTH_SHORT).show()
-            builder.create().dismiss()
-        }
-
-        buttonCancel.setOnClickListener {
-            Toast.makeText(context, "Cancel clicked", Toast.LENGTH_SHORT).show()
-            builder.create().dismiss()
-        }
 
         val secondDialog: AlertDialog = builder.create()
+        secondDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         secondDialog.show()
     }
 
-    private fun setImageAsBackground(view: View, imageUri: Uri) {
-        val imageStream = context.contentResolver.openInputStream(imageUri)
-        val drawable = Drawable.createFromStream(imageStream, imageUri.toString())
-        view.background = drawable
-    }
 
 
 
@@ -306,7 +283,7 @@ class CustomMenu(
             (map["url"] as? String)
         }
     }
-    private fun showRewardAd(share: LinearLayout, download: LinearLayout, add: LinearLayout) {
+/*    private fun showRewardAd(share: LinearLayout, download: LinearLayout, add: LinearLayout) {
         rewardAdManager.showRewardedAd((context as Activity),
             onUserEarnedReward = {
                 lifecycleOwner?.let { updateUniqueString(it,updatesDao,"a") }
@@ -326,7 +303,7 @@ class CustomMenu(
                 Toast.makeText(context, "Ad is not loaded yet", Toast.LENGTH_SHORT).show()
             }
         )
-    }
+    }*/
 
 
     fun updateUniqueString(

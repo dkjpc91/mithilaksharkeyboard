@@ -13,8 +13,8 @@ android {
         applicationId = "com.mithilakshar.mithilaksharkeyboard"
         minSdk = 29
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 4
+        versionName = "4.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -42,7 +42,7 @@ android {
 
 dependencies {
     implementation ("com.github.skydoves:colorpickerview:2.3.0")
-
+    implementation ("androidx.cardview:cardview:1.0.0")
     implementation (libs.glide)
     implementation(libs.app.update)
     implementation(libs.app.update.ktx)
@@ -64,7 +64,7 @@ dependencies {
     implementation (libs.androidx.core.ktx.v1120) // Check for the latest version
     implementation (libs.androidx.activity.ktx.v172) // Check for the latest version
 
-    implementation (libs.play.services.ads)
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

@@ -1,0 +1,94 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/page1"
+    android:elevation="4dp"
+    android:orientation="vertical">
+
+    <!-- Preview Image (Full Width) -->
+    <ImageView
+        android:id="@+id/image1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.4"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"/>
+
+    <!-- Greeting Title -->
+    <TextView
+        android:id="@+id/txt1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Happy Holi!"
+        android:textSize="18sp"
+        android:textColor="@color/red"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:paddingVertical="8dp"/>
+
+    <!-- Holi Message -->
+    <TextView
+        android:id="@+id/txt2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enjoy the colors of joy and happiness!"
+        android:textSize="14sp"
+        android:textColor="@color/red"
+        android:gravity="center"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp"/>
+
+    <!-- Decorative Divider Line -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginVertical="8dp"/>
+
+    <!-- Buttons Container -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="8dp"
+        android:layout_marginBottom="8dp">
+
+        <!-- View Details Button -->
+        <Button
+            android:id="@+id/btnViewDetails"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="View Details"
+            android:backgroundTint="#FF9800"
+            android:textColor="@android:color/white"
+            android:padding="8dp"
+            android:elevation="6dp"
+            android:layout_marginEnd="4dp"/>
+
+        <!-- Share Button -->
+        <Button
+            android:id="@+id/btnShare"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Share"
+            android:backgroundTint="#03A9F4"
+            android:textColor="@android:color/white"
+            android:padding="8dp"
+            android:elevation="6dp"
+            android:layout_marginStart="4dp"/>
+    </LinearLayout>
+
+    <!-- Bottom Image (Full Width) -->
+    <ImageView
+        android:id="@+id/image2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.4"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"/>
+</LinearLayout>

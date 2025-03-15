@@ -31,7 +31,7 @@ import com.bumptech.glide.request.transition.Transition
 import com.mithilakshar.mithilaksharkeyboard.R
 import com.mithilakshar.mithilaksharkeyboard.databinding.ActivityDisplayLayoutBinding
 import com.mithilakshar.mithilaksharkeyboard.utility.GestureTouchListener
-
+import com.mithilakshar.mithilaksharkeyboard.utility.GestureTouchListeneredit
 
 
 class DisplayLayoutActivity : AppCompatActivity() {
@@ -145,7 +145,7 @@ class DisplayLayoutActivity : AppCompatActivity() {
         }
 
         // Apply Gesture Listener to individual views
-        val gestureTouchListener = GestureTouchListener(this, layoutView)
+        val gestureTouchListeneredit = GestureTouchListeneredit(this, layoutView)
 
 
         binding.fab.setOnClickListener {
@@ -185,10 +185,10 @@ class DisplayLayoutActivity : AppCompatActivity() {
 
 
 
-        txt1View?.setOnTouchListener(gestureTouchListener)
-        txt2View?.setOnTouchListener(gestureTouchListener)
-        image1View?.setOnTouchListener(gestureTouchListener)
-        image2View?.setOnTouchListener(gestureTouchListener)
+        txt1View?.setOnTouchListener(gestureTouchListeneredit)
+        txt2View?.setOnTouchListener(gestureTouchListeneredit)
+        image1View?.setOnTouchListener(gestureTouchListeneredit)
+        image2View?.setOnTouchListener(gestureTouchListeneredit)
 
 
     }

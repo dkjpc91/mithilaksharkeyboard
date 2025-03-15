@@ -15,7 +15,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 
-class GestureTouchListener(private val context: Context, private val view: View) : GestureDetector.SimpleOnGestureListener(), View.OnTouchListener {
+class GestureTouchListeneredit(private val context: Context, private val view: View) : GestureDetector.SimpleOnGestureListener(), View.OnTouchListener {
     private val handler = Handler(Looper.getMainLooper())
     private val longPressTimeout = ViewConfiguration.getLongPressTimeout() + 2000
     private var xDelta = 0f

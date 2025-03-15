@@ -9,7 +9,31 @@
 
         <color name="green">#4CAF50</color>  <!-- Green color -->
         <color name="yellow">#FFEB3B</color> <!-- Yellow color -->
+        <!-- Light grey background for ScrollView -->
+        <color name="light_grey">#F5F5F5</color>
 
+        <!-- White background for cards and buttons -->
+
+
+        <!-- Dark grey text color for secondary text -->
+        <color name="dark_grey">#757575</color>
+
+        <!-- Blue text color for Edit Text Button -->
+        <color name="blue">#0000FF</color>
+
+
+
+        <!-- Custom SeekBar Progress Color -->
+        <color name="seekbar_progress">#FF6200EE</color>
+
+        <!-- Custom SeekBar Background Color -->
+        <color name="seekbar_background">#E0E0E0</color>
+
+        <!-- Custom Thumb Color for SeekBar -->
+        <color name="seekbar_thumb">#FF3700B3</color>
+
+        <!-- Rounded Button Background Color -->
+        <color name="rounded_button_background">#E3F2FD</color>
 
     <color name="purple_500">#9C27B0</color>
 

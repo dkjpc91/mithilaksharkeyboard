@@ -48,7 +48,6 @@ class CustomMenu(
 
         val share: LinearLayout = customView.findViewById(R.id.share)
         val download: LinearLayout = customView.findViewById(R.id.download)
-        val add: LinearLayout = customView.findViewById(R.id.add)
         val posterbackgroundlist: LinearLayout = customView.findViewById(R.id.posterbackgroundlist)
         val posterbackgroundprelist : LinearLayout = customView.findViewById(R.id.posterbackgroundprelist)
         val mithilakshar : LinearLayout = customView.findViewById(R.id.mithilakshar)
@@ -65,17 +64,6 @@ class CustomMenu(
 
         }
 
-        add.setOnClickListener {
-
-
-
-
-/*        showRewardAd(share,download,add)*/
-
-
-
-
-        }
 
         shareapp.setOnClickListener {
             // Ensure 'context' is the proper context for the dialog, e.g., activity or application context

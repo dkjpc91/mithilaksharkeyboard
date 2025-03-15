@@ -1,94 +1,79 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bg"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@drawable/page1"
     android:elevation="4dp"
     android:orientation="vertical">
 
-    <!-- Preview Image (Full Width) -->
-    <ImageView
-        android:id="@+id/image1"
+    <!-- Nested RelativeLayout for Creative Arrangement -->
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.4"
-        android:scaleType="fitXY"
-        android:adjustViewBounds="true"/>
+        android:layout_height="match_parent">
 
-    <!-- Greeting Title -->
-    <TextView
-        android:id="@+id/txt1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Happy Holi!"
-        android:textSize="18sp"
-        android:textColor="@color/red"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:paddingVertical="8dp"/>
+        <!-- Background Image (Festive Holi Colors) -->
+        <ImageView
+            android:id="@+id/image1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/m"
+            android:alpha="0.8" />
 
-    <!-- Holi Message -->
-    <TextView
-        android:id="@+id/txt2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Enjoy the colors of joy and happiness!"
-        android:textSize="14sp"
-        android:textColor="@color/red"
-        android:gravity="center"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="8dp"/>
+        <!-- Top Decorative Image (Color Splash) -->
+        <ImageView
+            android:id="@+id/image2"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/download"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp" />
 
-    <!-- Decorative Divider Line -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@android:color/darker_gray"
-        android:layout_marginVertical="8dp"/>
-
-    <!-- Buttons Container -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingHorizontal="8dp"
-        android:layout_marginBottom="8dp">
-
-        <!-- View Details Button -->
-        <Button
-            android:id="@+id/btnViewDetails"
-            android:layout_width="0dp"
+        <!-- Greeting Title in Maithili -->
+        <TextView
+            android:id="@+id/txt1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="View Details"
-            android:backgroundTint="#FF9800"
-            android:textColor="@android:color/white"
-            android:padding="8dp"
-            android:elevation="6dp"
-            android:layout_marginEnd="4dp"/>
+            android:text="होली के सुभकामना!"
+            android:textSize="28sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:shadowColor="@color/black"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="4"
+            android:layout_below="@id/image2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp" />
 
-        <!-- Share Button -->
-        <Button
-            android:id="@+id/btnShare"
-            android:layout_width="0dp"
+        <!-- Holi Message in Maithili -->
+        <TextView
+            android:id="@+id/txt2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Share"
-            android:backgroundTint="#03A9F4"
-            android:textColor="@android:color/white"
-            android:padding="8dp"
-            android:elevation="6dp"
-            android:layout_marginStart="4dp"/>
-    </LinearLayout>
+            android:text="रंग के खुशी आनंद से भर देह!"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:shadowColor="@color/black"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="4"
+            android:layout_below="@id/txt1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp" />
 
-    <!-- Bottom Image (Full Width) -->
-    <ImageView
-        android:id="@+id/image2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.4"
-        android:scaleType="fitXY"
-        android:adjustViewBounds="true"/>
+        <!-- Bottom Decorative Image (Pichkari) -->
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/logo"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="50dp"
+            android:layout_marginEnd="20dp" />
+
+    </RelativeLayout>
+
 </LinearLayout>

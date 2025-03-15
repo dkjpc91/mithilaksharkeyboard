@@ -276,8 +276,10 @@ class CustomModifier(private val context: Context) {
     }
 
 
+
+
     private fun showImagebgurlSelectorDialog2(
-        customView: View,
+        customView: ImageView,  // Assuming customView is also an ImageView
         alertDialog: AlertDialog,
         bgImageView2: ImageView
     ) {
@@ -290,7 +292,7 @@ class CustomModifier(private val context: Context) {
         val imageSelectorView = inflater.inflate(R.layout.image_selector_dialog, null)
 
         val recyclerView: RecyclerView = imageSelectorView.findViewById(R.id.recyclerView)
-        recyclerView.layoutManager = GridLayoutManager(context, 2)  // 2 columns
+        recyclerView.layoutManager = GridLayoutManager(context, 2) // 2 columns
 
         // Create the image selector dialog
         val imageSelectorDialog = AlertDialog.Builder(context)
@@ -301,21 +303,16 @@ class CustomModifier(private val context: Context) {
         // Create and set the ImagedburlAdapter
         val imageAdapter = ImagedburlAdapter(imageResources) { selectedImage ->
             try {
-                // Apply the selected image as background to customView
+                // Load the selected image into both customView and bgImageView2
                 Glide.with(context)
                     .load(selectedImage)
-                    .into(object : SimpleTarget<Drawable>() {
-                        override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
-                            customView.background = resource  // Set as background
-                        }
-                    })
+                    .into(customView)  // Set as image in customView (ImageView)
 
-                // Load the same image into bgImageView2
                 Glide.with(context)
                     .load(selectedImage)
-                    .into(bgImageView2)  // Set as image in ImageView
+                    .into(bgImageView2)  // Set as image in bgImageView2 (ImageView)
 
-                // Refresh views
+                // Refresh both ImageViews
                 customView.invalidate()
                 bgImageView2.invalidate()
 
@@ -324,16 +321,15 @@ class CustomModifier(private val context: Context) {
             }
 
             imageSelectorDialog.dismiss() // Close the image selector dialog
-            alertDialog.dismiss() // Close the original alert dialog
+           /* alertDialog.dismiss() // Close the original alert dialog*/
         }
 
         recyclerView.adapter = imageAdapter
-
         imageSelectorDialog.show()
     }
 
     private fun showImagebgurlSelectorDialog3(
-        customView: View,
+        customView: ImageView,  // Assuming customView is also an ImageView
         alertDialog: AlertDialog,
         bgImageView2: ImageView
     ) {
@@ -346,7 +342,7 @@ class CustomModifier(private val context: Context) {
         val imageSelectorView = inflater.inflate(R.layout.image_selector_dialog, null)
 
         val recyclerView: RecyclerView = imageSelectorView.findViewById(R.id.recyclerView)
-        recyclerView.layoutManager = GridLayoutManager(context, 2)  // 2 columns
+        recyclerView.layoutManager = GridLayoutManager(context, 2) // 2 columns
 
         // Create the image selector dialog
         val imageSelectorDialog = AlertDialog.Builder(context)
@@ -357,21 +353,16 @@ class CustomModifier(private val context: Context) {
         // Create and set the ImagedburlAdapter
         val imageAdapter = ImagedburlAdapter(imageResources) { selectedImage ->
             try {
-                // Apply the selected image as background to customView
+                // Load the selected image into both customView and bgImageView2
                 Glide.with(context)
                     .load(selectedImage)
-                    .into(object : SimpleTarget<Drawable>() {
-                        override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
-                            customView.background = resource  // Set as background
-                        }
-                    })
+                    .into(customView)  // Set as image in customView (ImageView)
 
-                // Load the same image into bgImageView2
                 Glide.with(context)
                     .load(selectedImage)
-                    .into(bgImageView2)  // Set as image in ImageView
+                    .into(bgImageView2)  // Set as image in bgImageView2 (ImageView)
 
-                // Refresh views
+                // Refresh both ImageViews
                 customView.invalidate()
                 bgImageView2.invalidate()
 
@@ -384,9 +375,9 @@ class CustomModifier(private val context: Context) {
         }
 
         recyclerView.adapter = imageAdapter
-
         imageSelectorDialog.show()
     }
+
 
 
 

@@ -68,13 +68,13 @@ class sViewDownloader(private val context: Context) {
 
             val intent = Intent(Intent.ACTION_SEND).apply {
                 type = "image/png"
-                val shareText = "मिथिला पंचांग ऐप: \n\n@mithilakshar13"
+                val shareText = "मिथिलाक्षर पोस्टर ऐप: \n\n@mithilakshar13"
                 putExtra(Intent.EXTRA_TEXT, shareText)
                 putExtra(Intent.EXTRA_STREAM, contentUri)
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             }
 
-            context.startActivity(Intent.createChooser(intent, "मिथिला पंचांग ऐप"))
+            context.startActivity(Intent.createChooser(intent, "मिथिलाक्षर पोस्टर ऐप"))
         }
 
     fun viewToBitmap(view: View): Bitmap {

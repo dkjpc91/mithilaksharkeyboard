@@ -1,21 +1,16 @@
 package com.mithilakshar.mithilaksharkeyboard.utility
 
-import ImageLayoutAdderUrl
+
 import PermissionManager
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.findViewTreeLifecycleOwner
@@ -30,7 +25,6 @@ class CustomMenu(
     private val main: View,
     private val imagePicker: ImagePicker,
     private val imagelyoutadder: Imagelyoutadder,
-    private val updatesDao: UpdatesDao,
 
 ) {
     val viewDownloader = sViewDownloader(context)
@@ -59,23 +53,16 @@ class CustomMenu(
         val posterbackgroundprelist : LinearLayout = customView.findViewById(R.id.posterbackgroundprelist)
         val mithilakshar : LinearLayout = customView.findViewById(R.id.mithilakshar)
         val devnagri : LinearLayout = customView.findViewById(R.id.devnagri)
+
+        val shareapp : LinearLayout = customView.findViewById(R.id.shareapp)
+
         val imagelist : LinearLayout = customView.findViewById(R.id.imagelist)
         val imageselection : LinearLayout = customView.findViewById(R.id.imageselection)
-        val shareapp : LinearLayout = customView.findViewById(R.id.shareapp)
 
 
          lifecycleOwner = main.findViewTreeLifecycleOwner()
         if (lifecycleOwner != null) {
-            updatesDao.getUniqueStringById(2).observe(lifecycleOwner!!, {
-                uniqueStringLiveData.postValue(it)
-                if(it.equals("d")){
 
-                    share.visibility=View.GONE
-                    download.visibility=View.GONE
-                    add.visibility=View.VISIBLE
-                }
-
-            })
         }
 
         add.setOnClickListener {
@@ -83,7 +70,8 @@ class CustomMenu(
 
 
 
-    /*        showRewardAd(share,download,add)*/
+/*        showRewardAd(share,download,add)*/
+
 
 
 
@@ -123,8 +111,8 @@ class CustomMenu(
 
 
             alertDialog.dismiss()
-            val dbHelper=dbHelper(context,"Imageslist.db")
-            val imageResources = getUrls(dbHelper.getImageList())
+            val dbHelper=dbHelper(context,"layouthelper.db")
+            val imageResources = dbHelper.getImage1List()
             val imageLayoutAdderUrl = ImageLayoutAdderUrl(context, (main as RelativeLayout))
             val imageSelectorDialog = ImageSelectorDialog(
                 context = context,
@@ -215,7 +203,7 @@ class CustomMenu(
 
             lifecycleOwner?.lifecycleScope?.launch {
 
-                updateUniqueString(lifecycleOwner!!,updatesDao,uniqueStringLiveData.value.toString())
+
 
             }
 
@@ -229,7 +217,7 @@ class CustomMenu(
         share.setOnClickListener {
             lifecycleOwner?.lifecycleScope?.launch {
 
-                updateUniqueString(lifecycleOwner!!,updatesDao,uniqueStringLiveData.value.toString())
+
 
             }
 
@@ -304,6 +292,7 @@ class CustomMenu(
             }
         )
     }*/
+
 
 
     fun updateUniqueString(

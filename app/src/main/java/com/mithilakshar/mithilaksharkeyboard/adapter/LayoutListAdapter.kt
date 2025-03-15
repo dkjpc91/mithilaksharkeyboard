@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
@@ -18,10 +19,17 @@ import com.mithilakshar.mithilaksharkeyboard.R
 
 class LayoutListAdapter(
     private val categoryMap: List<Map<String, Any?>>,
-    private val onItemClick: (Map<String, Any?>) -> Unit  // onItemClick now accepts a Map
+    private val onItemClick: (Map<String, Any?>) -> Unit
 ) : RecyclerView.Adapter<LayoutListAdapter.ViewHolder>() {
 
     private val TAG = "LayoutListAdapter"
+    private val PAGE_SIZE = 10  // Load 10 items at a time
+    private var visibleCategoryMap: MutableList<Map<String, Any?>> = mutableListOf()
+    var isLoading = false
+
+    init {
+        loadMoreItems()  // Load initial items
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -30,9 +38,9 @@ class LayoutListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val itemData = categoryMap.getOrNull(position) ?: return
-
+        val itemData = visibleCategoryMap.getOrNull(position) ?: return
         val context = holder.itemView.context
+
         val name = itemData["name"] as? String ?: "Unknown"
         val txt1 = itemData["txt1"] as? String ?: "Default Title"
         val txt2 = itemData["txt2"] as? String ?: "Default Message"
@@ -61,7 +69,6 @@ class LayoutListAdapter(
         txt1View?.text = txt1
         txt2View?.text = txt2
 
-        // Load images and set them before capturing bitmap
         var imagesLoaded = 0
         val totalImages = listOfNotNull(image1Url, image2Url, bgUrl).size
 
@@ -71,7 +78,49 @@ class LayoutListAdapter(
             }
         }
 
-        image1Url?.let {
+        loadImage(image1Url, context, image1View, ::checkAndSetBitmap)
+        loadImage(image2Url, context, image2View, ::checkAndSetBitmap)
+        loadBackgroundImage(bgUrl, context, rootLayout, ::checkAndSetBitmap)
+
+        holder.cardView.setOnClickListener {
+            Log.d(TAG, "Card clicked for name: $name")
+            onItemClick(itemData)
+        }
+    }
+
+    override fun getItemCount(): Int = visibleCategoryMap.size
+
+    fun loadMoreItems() {
+        if (isLoading) return
+        val start = visibleCategoryMap.size
+        val end = minOf(start + PAGE_SIZE, categoryMap.size)
+        if (start < end) {
+            isLoading = true
+            visibleCategoryMap.addAll(categoryMap.subList(start, end))
+            notifyDataSetChanged()
+            isLoading = false
+        }
+    }
+
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val layoutImageView: ImageView = itemView.findViewById(R.id.layoutImageView)
+        val categoryName: TextView = itemView.findViewById(R.id.categoryName)
+        val cardView: CardView = itemView.findViewById(R.id.cardView)
+    }
+
+    private fun getBitmapFromView(view: View): Bitmap {
+        view.measure(
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        )
+        view.layout(0, 0, view.measuredWidth, view.measuredHeight)
+        return Bitmap.createBitmap(view.measuredWidth, view.measuredHeight, Bitmap.Config.ARGB_8888).apply {
+            Canvas(this).apply { view.draw(this) }
+        }
+    }
+
+    private fun loadImage(url: String?, context: android.content.Context, imageView: ImageView?, onLoadComplete: () -> Unit) {
+        url?.let {
             Glide.with(context)
                 .asBitmap()
                 .load(it)
@@ -79,31 +128,16 @@ class LayoutListAdapter(
                 .error(R.drawable.logo)
                 .into(object : CustomTarget<Bitmap>() {
                     override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                        image1View?.setImageBitmap(resource)
-                        checkAndSetBitmap()
+                        imageView?.setImageBitmap(resource)
+                        onLoadComplete()
                     }
-
                     override fun onLoadCleared(placeholder: Drawable?) {}
                 })
-        } ?: checkAndSetBitmap()
+        } ?: onLoadComplete()
+    }
 
-        image2Url?.let {
-            Glide.with(context)
-                .asBitmap()
-                .load(it)
-                .placeholder(R.drawable.m)
-                .error(R.drawable.logo)
-                .into(object : CustomTarget<Bitmap>() {
-                    override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                        image2View?.setImageBitmap(resource)
-                        checkAndSetBitmap()
-                    }
-
-                    override fun onLoadCleared(placeholder: Drawable?) {}
-                })
-        } ?: checkAndSetBitmap()
-
-        bgUrl?.let {
+    private fun loadBackgroundImage(url: String?, context: android.content.Context, view: View?, onLoadComplete: () -> Unit) {
+        url?.let {
             Glide.with(context)
                 .asBitmap()
                 .load(it)
@@ -111,39 +145,27 @@ class LayoutListAdapter(
                 .error(R.drawable.m)
                 .into(object : CustomTarget<Bitmap>() {
                     override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                        rootLayout?.background = android.graphics.drawable.BitmapDrawable(context.resources, resource)
-                        checkAndSetBitmap()
+                        view?.background = android.graphics.drawable.BitmapDrawable(context.resources, resource)
+                        onLoadComplete()
                     }
-
                     override fun onLoadCleared(placeholder: Drawable?) {}
                 })
-        } ?: checkAndSetBitmap()
+        } ?: onLoadComplete()
+    }
+}
 
-        holder.cardView.setOnClickListener {
-            Log.d(TAG, "Card clicked for name: $name")
-            onItemClick(itemData)  // Pass the entire item data on click
+fun RecyclerView.addPaginationListener(adapter: LayoutListAdapter) {
+    this.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+            val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+            val visibleItemCount = layoutManager.childCount
+            val totalItemCount = layoutManager.itemCount
+            val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+
+            if (!adapter.isLoading && (visibleItemCount + firstVisibleItemPosition) >= totalItemCount && firstVisibleItemPosition >= 0) {
+                adapter.loadMoreItems()
+            }
         }
-    }
-
-    override fun getItemCount(): Int = categoryMap.size
-
-    // ViewHolder class to hold item views
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val layoutImageView: ImageView = itemView.findViewById(R.id.layoutImageView)
-        val categoryName: TextView = itemView.findViewById(R.id.categoryName)
-        val cardView: CardView = itemView.findViewById(R.id.cardView)
-    }
-
-    // Function to capture the layout view as a Bitmap
-    private fun getBitmapFromView(view: View): Bitmap {
-        view.measure(
-            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
-        )
-        view.layout(0, 0, view.measuredWidth, view.measuredHeight)
-
-        return Bitmap.createBitmap(view.measuredWidth, view.measuredHeight, Bitmap.Config.ARGB_8888).apply {
-            Canvas(this).apply { view.draw(this) }
-        }
-    }
+    })
 }

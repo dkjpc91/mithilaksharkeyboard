@@ -3,4 +3,17 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF5722</color>
+
+
+        <color name="colorPrimary">#6200EE</color>  <!-- Example primary color -->
+
+        <color name="green">#4CAF50</color>  <!-- Green color -->
+        <color name="yellow">#FFEB3B</color> <!-- Yellow color -->
+
+
+    <color name="purple_500">#9C27B0</color>
+
+    <!-- Teal 700 (Material Design Color) -->
+    <color name="teal_700">#00796B</color>
+
 </resources>

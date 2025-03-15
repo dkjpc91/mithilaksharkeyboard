@@ -1,48 +1,34 @@
 package com.mithilakshar.mithilaksharkeyboard.utility
 
-import android.Manifest
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
-import android.os.Build
 import android.provider.MediaStore
-import android.provider.Settings
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.RelativeLayout
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.mithilakshar.mithilaksharkeyboard.R
-import com.mithilakshar.mithilaksharkeyboard.utility.ImagePicker.Companion.REQUEST_CODE
 
 class Imagelyoutadder(
     private val context: Context,
-    private val parentLayout: RelativeLayout,
+    private val parentLayout: RelativeLayout, // Keep as RelativeLayout
     private val activityResultLauncher: ActivityResultLauncher<Intent>,
     private val onImagePicked: (Uri) -> Unit
-
 ) {
 
     private var selectedBitmap: Bitmap? = null
 
-
-
-
-    fun showImagePickerDialog(relativelayout: RelativeLayout) {
+    fun showImagePickerDialog(frameLayout: RelativeLayout) { // No need for FrameLayout parameter
         val dialogView = LayoutInflater.from(context).inflate(R.layout.dialogimageadder, null)
         val button = dialogView.findViewById<Button>(R.id.selectimagebutton)
 
         val dialog = AlertDialog.Builder(context)
-            .setTitle("मनपसंद फोटो के चुनाव करू ")
+            .setTitle("मनपसंद फोटो के चुनाव करू")
             .setView(dialogView)
-
             .setNegativeButton("कैंसिल करू", null)
             .create()
 
@@ -59,48 +45,46 @@ class Imagelyoutadder(
         activityResultLauncher.launch(intent)
     }
 
-
-
-
-    fun addImageViewToLayout(bitmap: Bitmap, relativelayout: RelativeLayout) {
+    fun addImageViewToLayout(bitmap: Bitmap, relative: RelativeLayout) { // Removed extra parameter
         val newImageView = ImageView(context)
         newImageView.setImageBitmap(bitmap)
 
-        // Create LayoutParams with positioning below another view
+        // Use RelativeLayout.LayoutParams instead of FrameLayout.LayoutParams
         val layoutParams = RelativeLayout.LayoutParams(
             RelativeLayout.LayoutParams.WRAP_CONTENT,
             RelativeLayout.LayoutParams.WRAP_CONTENT
         ).apply {
-            // Center the TextView in the parent layout
-            addRule(RelativeLayout.CENTER_IN_PARENT)
-            // Adjust margins as needed
+            // Align image to the top-center of the parent RelativeLayout
+            addRule(RelativeLayout.ALIGN_PARENT_TOP)
+            addRule(RelativeLayout.CENTER_HORIZONTAL)
         }
-
 
         newImageView.layoutParams = layoutParams
 
-        // Find the RelativeLayout and add the ImageView
-        val relativeLayout: RelativeLayout = parentLayout.findViewById(R.id.relative)
-        relativeLayout.addView(newImageView)
+        // Add ImageView to parent RelativeLayout
+        parentLayout.addView(newImageView)
+
         setImageViewSize(newImageView, bitmap.width, bitmap.height)
-        // Apply ResizableTouchListener to the ImageView
+
+        // Apply touch listener for resizing/moving
         newImageView.setOnTouchListener(GestureTouchListener(context, newImageView))
-
-
     }
 
     private fun setImageViewSize(imageView: ImageView, imageWidth: Int, imageHeight: Int) {
         val parentWidth = parentLayout.width
         val parentHeight = parentLayout.height
 
+        // Calculate aspect ratio
         val aspectRatio = imageWidth.toFloat() / imageHeight
         val newWidth: Int
         val newHeight: Int
 
         if (parentWidth < parentHeight * aspectRatio) {
+            // Set width to 60% of the parent and adjust height accordingly
             newWidth = (parentWidth * 0.6).toInt()
             newHeight = (newWidth / aspectRatio).toInt()
         } else {
+            // Set height to 60% of the parent and adjust width accordingly
             newHeight = (parentHeight * 0.6).toInt()
             newWidth = (newHeight * aspectRatio).toInt()
         }
@@ -110,18 +94,10 @@ class Imagelyoutadder(
 
         imageView.setPadding(paddingInPx, paddingInPx, paddingInPx, paddingInPx)
 
+        // Use RelativeLayout.LayoutParams instead of FrameLayout.LayoutParams
         val layoutParams = imageView.layoutParams as RelativeLayout.LayoutParams
         layoutParams.width = newWidth
         layoutParams.height = newHeight
         imageView.layoutParams = layoutParams
     }
-
 }
-
-
-
-
-
-
-
-

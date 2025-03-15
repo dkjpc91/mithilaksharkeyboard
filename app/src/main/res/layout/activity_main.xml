@@ -52,7 +52,7 @@
                         android:layout_marginStart="18dp"
                         android:background="?attr/selectableItemBackground"
                         android:padding="10dp"
-                        android:src="@drawable/hamburger"
+                        android:src="@drawable/feather"
                         ads:tint="#03A9F4" />
                     <TextView
                         android:id="@+id/bannertext"

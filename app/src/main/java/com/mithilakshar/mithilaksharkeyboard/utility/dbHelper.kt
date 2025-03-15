@@ -23,37 +23,31 @@ class dbHelper(context: Context, dbName: String) {
 
 
     @SuppressLint("Range")
-    fun getImageList(): List<Map<String, Any?>> {
-        val imageList = mutableListOf<Map<String, Any?>>()
+    fun getImageBgList(): List<String> {
+        val imageUrls = mutableListOf<String>()
+
         db?.let { database ->
             if (!database.isOpen) {
-                Log.w(TAG, "Database not open for reading ImageList")
+                Log.w(TAG, "Database not open for reading image URLs")
                 return emptyList()
             }
 
-            val query = "SELECT * FROM Imageslist"
+            // Query to select the 'bg' column from the table
+            val query = "SELECT bg FROM layouthelper"
             database.rawQuery(query, null)?.use { cursor ->
-                val columnNames = cursor.columnNames  // Get column names from the cursor dynamically
                 while (cursor.moveToNext()) {
-                    val rowData = mutableMapOf<String, Any?>()
-                    for (columnName in columnNames) {
-                        val value = when (cursor.getType(cursor.getColumnIndex(columnName))) {
-                            Cursor.FIELD_TYPE_NULL -> null
-                            Cursor.FIELD_TYPE_INTEGER -> cursor.getLong(cursor.getColumnIndex(columnName))
-                            Cursor.FIELD_TYPE_FLOAT -> cursor.getDouble(cursor.getColumnIndex(columnName))
-                            Cursor.FIELD_TYPE_STRING -> cursor.getString(cursor.getColumnIndex(columnName))
-                            Cursor.FIELD_TYPE_BLOB -> cursor.getBlob(cursor.getColumnIndex(columnName))
-                            else -> null
-                        }
-                        rowData[columnName] = value
+                    val bgUrl = cursor.getString(cursor.getColumnIndex("bg"))
+                    bgUrl?.let {
+                        imageUrls.add(it) // Add the URL to the list
                     }
-                    imageList.add(rowData)
                 }
             }
         } ?: Log.e(TAG, "Database is null!")
 
-        return imageList
+        // Remove duplicates from the list if necessary
+        return imageUrls.distinct()
     }
+
 
 
     @SuppressLint("Range")
@@ -170,6 +164,72 @@ class dbHelper(context: Context, dbName: String) {
 
         return layoutList
     }
+
+
+    @SuppressLint("Range")
+    fun getImage1List(): List<String> {
+        val imageUrls = mutableListOf<String>()
+
+        if (db == null) {
+            Log.e(TAG, "Database is null!")
+            return emptyList()
+        }
+
+        if (!db!!.isOpen) {
+            Log.w(TAG, "Database not open for reading image URLs")
+            return emptyList()
+        }
+
+        // Correct the column name in getColumnIndex()
+        val query = "SELECT image1 FROM layouthelper"
+        db!!.rawQuery(query, null)?.use { cursor ->
+            if (cursor.count > 0) { // Ensure cursor is not empty
+                while (cursor.moveToNext()) {
+                    val imageUrl = cursor.getString(cursor.getColumnIndex("image1")) // Use "image1" instead of "bg"
+                    imageUrl?.let {
+                        imageUrls.add(it)
+                    }
+                }
+            } else {
+                Log.w(TAG, "No data found in layouthelper table")
+            }
+        }
+
+        return imageUrls.distinct() // Remove duplicates if necessary
+    }
+
+    @SuppressLint("Range")
+    fun getImage2List(): List<String> {
+        val imageUrls = mutableListOf<String>()
+
+        if (db == null) {
+            Log.e(TAG, "Database is null!")
+            return emptyList()
+        }
+
+        if (!db!!.isOpen) {
+            Log.w(TAG, "Database not open for reading image URLs")
+            return emptyList()
+        }
+
+        // Correct the column name in getColumnIndex()
+        val query = "SELECT image2 FROM layouthelper"
+        db!!.rawQuery(query, null)?.use { cursor ->
+            if (cursor.count > 0) { // Ensure cursor is not empty
+                while (cursor.moveToNext()) {
+                    val imageUrl = cursor.getString(cursor.getColumnIndex("image2")) // Use "image1" instead of "bg"
+                    imageUrl?.let {
+                        imageUrls.add(it)
+                    }
+                }
+            } else {
+                Log.w(TAG, "No data found in layouthelper table")
+            }
+        }
+
+        return imageUrls.distinct() // Remove duplicates if necessary
+    }
+
 
 
 

@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="16dp">
 
     <LinearLayout
         android:background="@drawable/rounded_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_gravity="center"
         android:padding="16dp">
 
-        <!-- Text Size -->
+        <!-- Text Size Section -->
         <TextView
-            android:layout_marginTop="30dp"
-            android:id="@+id/textSizeSeekBart"
+            android:id="@+id/textSizeSeekBarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="शब्द के आकर चुनू"
             android:textSize="20sp"
+            android:layout_marginTop="30dp"
             android:paddingTop="8dp" />
 
         <SeekBar
@@ -25,52 +27,64 @@
             android:layout_width="match_parent"
             android:layout_height="22dp" />
 
+        <!-- Text Size Text View -->
         <TextView
-            android:layout_marginTop="22dp"
-            android:id="@+id/textSizeSeekBarcolort"
+            android:id="@+id/textSizeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text Size: 20sp"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:paddingTop="4dp" />
+
+        <!-- Text Color Section -->
+        <TextView
+            android:id="@+id/textColorTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="शब्दक रंग चुनू"
             android:textSize="20sp"
+            android:layout_marginTop="22dp"
             android:paddingTop="8dp" />
 
+        <!-- Text Color Button -->
         <ImageView
-            android:id="@+id/textSizeSeekBarcolor"
+            android:id="@+id/textColorButton"
             android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_gravity="center"
             android:background="@color/white"
-            android:layout_height="60dp"
             android:src="@drawable/palette"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="8dp" />
 
-
-        <!-- Color Picker -->
+        <!-- Background Color Section -->
         <TextView
-            android:layout_marginTop="22dp"
+            android:id="@+id/backgroundColorTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="बैकग्राउंड रंग चुनू"
             android:textSize="20sp"
+            android:layout_marginTop="22dp"
             android:paddingTop="8dp" />
 
         <ImageView
             android:id="@+id/colorPickerView"
             android:layout_width="60dp"
-            android:layout_gravity="center"
             android:layout_height="60dp"
+            android:layout_gravity="center"
             android:background="@color/white"
-        android:src="@drawable/palette"
+            android:src="@drawable/palette"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="8dp" />
 
-        <!-- Width -->
+        <!-- Width Section -->
         <TextView
-            android:layout_marginTop="22dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="चौड़ाई"
             android:textSize="20sp"
+            android:layout_marginTop="22dp"
             android:paddingTop="8dp" />
 
         <SeekBar
@@ -78,28 +92,39 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <!-- Height -->
+        <!-- Height Section -->
         <TextView
-            android:layout_marginTop="22dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="लम्बाई "
+            android:text="लम्बाई"
             android:textSize="20sp"
+            android:layout_marginTop="22dp"
             android:paddingTop="8dp" />
 
         <SeekBar
-
             android:id="@+id/heightSeekBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <!-- Edit Text Button -->
+        <TextView
+            android:id="@+id/editTextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edit Text"
+            android:textSize="20sp"
+            android:textColor="#0000FF"
+            android:gravity="center"
+            android:padding="12dp"
+            android:background="@drawable/rounded_square"
+            android:layout_marginTop="25dp" />
+
         <!-- Delete Button -->
         <TextView
-
             android:id="@+id/deleteButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="संसोधन आइटम के डिलीट करू "
+            android:text="संसोधन आइटम के डिलीट करू"
             android:textSize="20sp"
             android:textColor="#FF0000"
             android:gravity="center"
@@ -107,16 +132,31 @@
             android:background="@drawable/rounded_square"
             android:layout_marginTop="25dp" />
 
+        <!-- Move to Top Button -->
         <TextView
-            android:layout_marginTop="22dp"
-            android:textColor="#FF0000"
             android:id="@+id/moveToTopButton"
-            android:textSize="20sp"
-            android:layout_marginBottom="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_edit_text"
-            android:text="संसोधन आइटम के ऊपर लाबू " />
+            android:text="संसोधन आइटम के ऊपर लाबू"
+            android:textColor="#FF0000"
+            android:textSize="20sp"
+            android:layout_marginTop="22dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:padding="12dp"
+            android:background="@drawable/rounded_edit_text" />
+
+        <!-- Edit Text Field (Initially Hidden) -->
+        <EditText
+            android:id="@+id/editTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Type here"
+            android:textSize="18sp"
+            android:visibility="gone"
+            android:layout_marginTop="15dp"
+            android:padding="10dp"
+            android:background="@drawable/rounded_edit_text"/>
 
     </LinearLayout>
 </ScrollView>

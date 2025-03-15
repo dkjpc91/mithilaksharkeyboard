@@ -1,5 +1,7 @@
 package com.mithilakshar.mithilaksharkeyboard.UI
 
+import com.mithilakshar.mithilaksharkeyboard.UI.DisplayLayoutActivity
+
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log

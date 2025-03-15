@@ -33,8 +33,8 @@ class HomeActivity : AppCompatActivity() {
         binding.nextImage.setOnClickListener {
             // Handle click for the nextImage
             // For example, start a new Activity
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+        /*    val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)*/
         }
 
         Handler(Looper.getMainLooper()).postDelayed({

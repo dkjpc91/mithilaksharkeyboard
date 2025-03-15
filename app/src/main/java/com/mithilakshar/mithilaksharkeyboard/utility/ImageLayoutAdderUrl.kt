@@ -1,17 +1,17 @@
+package com.mithilakshar.mithilaksharkeyboard.utility
+
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.TypedValue
 import android.widget.ImageView
 import android.widget.RelativeLayout
-import androidx.core.view.doOnPreDraw
+import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
-import com.bumptech.glide.Glide
-import com.mithilakshar.mithilaksharkeyboard.utility.GestureTouchListener
 
 class ImageLayoutAdderUrl(
     private val context: Context,
-    private val parentLayout: RelativeLayout
+    private val parentLayout: RelativeLayout // Using RelativeLayout
 ) {
 
     fun addImageViewFromUrl(imageUrl: String) {
@@ -30,7 +30,7 @@ class ImageLayoutAdderUrl(
                     setImageViewSize(newImageView, resource.intrinsicWidth, resource.intrinsicHeight)
 
                     // Add the ImageView to the parent layout
-                    parentLayout.addView(newImageView)
+                    parentLayout.addView(newImageView, 0) // Add at the top (index 0)
 
                     // Apply ResizableTouchListener to the ImageView if needed
                     newImageView.setOnTouchListener(GestureTouchListener(context, newImageView))
@@ -41,33 +41,30 @@ class ImageLayoutAdderUrl(
                 }
             })
 
-        // Create LayoutParams with positioning
+        // Corrected: Use RelativeLayout.LayoutParams instead of FrameLayout.LayoutParams
         val layoutParams = RelativeLayout.LayoutParams(
             RelativeLayout.LayoutParams.WRAP_CONTENT,
             RelativeLayout.LayoutParams.WRAP_CONTENT
         ).apply {
-            // Center the ImageView in the parent layout
-            addRule(RelativeLayout.CENTER_IN_PARENT)
+            addRule(RelativeLayout.ALIGN_PARENT_TOP) // Align to the top of the parent
+            addRule(RelativeLayout.CENTER_HORIZONTAL) // Center horizontally
         }
         newImageView.layoutParams = layoutParams
     }
 
     private fun setImageViewSize(imageView: ImageView, imageWidth: Int, imageHeight: Int) {
-        // Measure the parent layout dimensions
         val parentWidth = parentLayout.width
         val parentHeight = parentLayout.height
 
-        // Calculate the scaling factor while maintaining aspect ratio
+        // Calculate aspect ratio
         val aspectRatio = imageWidth.toFloat() / imageHeight
         val newWidth: Int
         val newHeight: Int
 
         if (parentWidth < parentHeight * aspectRatio) {
-            // Set width to 60% of parent and adjust height based on aspect ratio
             newWidth = (parentWidth * 0.6).toInt()
             newHeight = (newWidth / aspectRatio).toInt()
         } else {
-            // Set height to 60% of parent and adjust width based on aspect ratio
             newHeight = (parentHeight * 0.6).toInt()
             newWidth = (newHeight * aspectRatio).toInt()
         }
@@ -79,12 +76,10 @@ class ImageLayoutAdderUrl(
 
         imageView.setPadding(paddingInPx, paddingInPx, paddingInPx, paddingInPx)
 
-        // Increase the layout size by 2dp (paddingInPx) on all sides
+        // Corrected: Use RelativeLayout.LayoutParams
         val layoutParams = imageView.layoutParams as RelativeLayout.LayoutParams
         layoutParams.width = newWidth
         layoutParams.height = newHeight
         imageView.layoutParams = layoutParams
-
-
     }
 }

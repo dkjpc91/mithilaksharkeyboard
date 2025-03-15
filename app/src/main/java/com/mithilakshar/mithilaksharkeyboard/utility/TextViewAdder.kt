@@ -4,8 +4,8 @@ import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Typeface
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
@@ -13,7 +13,7 @@ import com.mithilakshar.mithilaksharkeyboard.R
 
 class TextViewAdder(
     private val context: Context,
-    private val parentLayout: RelativeLayout,
+    private val parentLayout: RelativeLayout, // Changed to FrameLayout
     private val applyCustomFont: Boolean
 ) {
 
@@ -23,12 +23,10 @@ class TextViewAdder(
         val text_heading = dialogView.findViewById<TextView>(R.id.text_heading)
         val text_description = dialogView.findViewById<TextView>(R.id.text_description)
 
-        if (!applyCustomFont){
-            text_description.text="देवनागरी या अंग्रेजी अन्य लिपि में लिखू "
-            text_heading.text="देवनागरी "
-
+        if (!applyCustomFont) {
+            text_description.text = "देवनागरी या अंग्रेजी अन्य लिपि में लिखू "
+            text_heading.text = "देवनागरी "
         }
-
 
         val dialog = AlertDialog.Builder(context)
             .setView(dialogView)
@@ -47,18 +45,19 @@ class TextViewAdder(
     private fun addTextViewToLayout(text: String) {
         val newTextView = TextView(context)
         newTextView.text = text
-        newTextView.textSize = 24f // Set text size to 20
+        newTextView.textSize = 24f // Set text size to 24
         newTextView.gravity = android.view.Gravity.CENTER
-        // Convert 100 dp to pixels
+
+        // Convert 100 dp to pixels for width
         val displayMetrics = context.resources.displayMetrics
         val widthInPixels = (displayMetrics.widthPixels - dpToPx(100, displayMetrics)).toInt()
 
-        val layoutParams = RelativeLayout.LayoutParams(
+        val layoutParams = FrameLayout.LayoutParams(
             widthInPixels,
-            RelativeLayout.LayoutParams.WRAP_CONTENT
+            FrameLayout.LayoutParams.WRAP_CONTENT
         ).apply {
             // Center the TextView in the parent layout
-            addRule(RelativeLayout.CENTER_IN_PARENT)
+            gravity = android.view.Gravity.TOP or android.view.Gravity.CENTER_HORIZONTAL
         }
 
         newTextView.layoutParams = layoutParams
@@ -70,14 +69,14 @@ class TextViewAdder(
         }
 
         newTextView.setOnTouchListener(GestureTouchListener(context, newTextView))
-        // Add the TextView to the parent layout
-        parentLayout.addView(newTextView)
+
+        // Add the TextView to the parent layout at the top (index 0)
+        parentLayout.addView(newTextView, 0) // Adding at the top
+
     }
 
     // Helper function to convert dp to pixels
     private fun dpToPx(dp: Int, displayMetrics: android.util.DisplayMetrics): Float {
         return dp * (displayMetrics.densityDpi / 160f)
     }
-
-
 }

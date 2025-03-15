@@ -19,20 +19,20 @@
         android:theme="@style/Theme.MithilaksharKeyboard"
         tools:targetApi="31">
         <activity
-            android:name=".UI.DisplayLayoutActivity"
+            android:name=".UI.LayoutTester"
             android:exported="false" />
+        <activity
+            android:name=".UI.DisplayLayoutActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".UI.LayoutListActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".UI.LayoutGenerator"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".HomeActivity"
             android:exported="true"
@@ -40,7 +40,13 @@
         <activity
             android:name=".SplashActivity"
             android:exported="true"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true"

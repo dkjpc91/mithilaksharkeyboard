@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
+import com.mithilakshar.mithilaksharkeyboard.MainActivity
 import com.mithilakshar.mithilaksharkeyboard.R
 import com.mithilakshar.mithilaksharkeyboard.adapter.LayoutAdapter
 import com.mithilakshar.mithilaksharkeyboard.databinding.ActivityLayoutGeneratorBinding
@@ -25,6 +28,7 @@ class LayoutGenerator : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: LayoutAdapter
     private lateinit var databaseHelper: dbHelper
+    private lateinit var lottieAnimationView: LottieAnimationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +43,31 @@ class LayoutGenerator : AppCompatActivity() {
         }
 
         Log.d("LayoutGenerator", "Starting file copy process")
-        copyFilesAndLoadData()
+        recyclerView = findViewById(R.id.recyclerView)
+        lottieAnimationView = binding.lottieAnimationView
+
+        showLottieAnimation()
+
+        // Load RecyclerView after 3 seconds
+        Handler(Looper.getMainLooper()).postDelayed({
+            binding.lottieAnimationView.visibility=View.GONE
+            recyclerView.visibility = View.VISIBLE
+            copyFilesAndLoadData()
+        }, 4000) // 3000 milliseconds = 3 seconds
+
+        binding.fab.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+
+        }
+
+
+
+    }
+
+    private fun showLottieAnimation() {
+        recyclerView.visibility = View.GONE
+        lottieAnimationView.playAnimation() // Start the Lottie animation
     }
 
     /**
@@ -64,7 +92,7 @@ class LayoutGenerator : AppCompatActivity() {
                 Log.d("LayoutGenerator", "Files copied successfully!")
 
                 // Show a success message in a Toast
-                Toast.makeText(this@LayoutGenerator, "Files copied successfully!", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@LayoutGenerator, "मिथिलाक्षर ऐप के शेयर करू !", Toast.LENGTH_LONG).show()
 
                 // Now, after the copy is complete, you can initialize the database and set up RecyclerView
                 Handler(Looper.getMainLooper()).postDelayed({

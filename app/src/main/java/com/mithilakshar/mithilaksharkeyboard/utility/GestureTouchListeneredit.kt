@@ -81,7 +81,7 @@ class GestureTouchListeneredit(private val context: Context, private val view: V
             isResizing = false
         }
         // Start long press detection
-        handler.postDelayed(longPressRunnable, longPressTimeout.toLong())
+      /*  handler.postDelayed(longPressRunnable, longPressTimeout.toLong())*/
 
     }
 

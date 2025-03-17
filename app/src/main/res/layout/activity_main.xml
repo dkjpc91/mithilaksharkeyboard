@@ -52,8 +52,8 @@
                         android:layout_marginStart="18dp"
                         android:background="?attr/selectableItemBackground"
                         android:padding="10dp"
-                        android:src="@drawable/feather"
-                        ads:tint="#03A9F4" />
+                        android:src="@drawable/hamburger"
+                        ads:tint="#FFEB3B" />
                     <TextView
                         android:id="@+id/bannertext"
                         android:fontFamily="@font/mithilakshar_dkj"

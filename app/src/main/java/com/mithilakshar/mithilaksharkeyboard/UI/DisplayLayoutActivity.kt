@@ -60,6 +60,9 @@ class DisplayLayoutActivity : AppCompatActivity() {
         val layoutName = intent.getStringExtra("layout") ?: ""
         val txt1 = intent.getStringExtra("txt1") ?: "Default Title"
         val txt2 = intent.getStringExtra("txt2") ?: "Default Message"
+        val txt3 = intent.getStringExtra("txt3") ?: "Default Message"
+        val txt4 = intent.getStringExtra("txt4") ?: "Default Message"
+        val txt5 = intent.getStringExtra("txt5") ?: "Default Message"
         val image1Url = intent.getStringExtra("image1")
         val image2Url = intent.getStringExtra("image2")
         val bgUrl = intent.getStringExtra("bg")
@@ -98,11 +101,19 @@ class DisplayLayoutActivity : AppCompatActivity() {
         // Dynamically find views inside the layout
         val txt1View = layoutView.findViewById<TextView>(R.id.txt1)
         val txt2View = layoutView.findViewById<TextView>(R.id.txt2)
+        val txt3View = layoutView.findViewById<TextView>(R.id.txt3)
+        val txt4View = layoutView.findViewById<TextView>(R.id.txt4)
+        val txt5View = layoutView.findViewById<TextView>(R.id.txt5)
         val image1View = layoutView.findViewById<ImageView>(R.id.image1)
         val image2View = layoutView.findViewById<ImageView>(R.id.image2)
         val bgView = layoutView.findViewById<LinearLayout>(R.id.bg)
+
         txt2View?.text = txt2
         txt1View?.text = txt1
+        txt3View?.text = txt3
+        txt4View?.text = txt4
+        txt5View?.text = txt5
+
 
         // Load images using Glide
         image1Url?.let {
@@ -154,7 +165,7 @@ class DisplayLayoutActivity : AppCompatActivity() {
             val customModifier = CustomModifier(this)
 
             // Show the custom dialog
-            customModifier.showDialog(txt1View, txt2View, image1View, image2View,bgView,txt1, txt2, image1Url, image2Url, bgUrl)
+            customModifier.showDialog(txt1View, txt2View, txt3View,txt4View,txt5View, image1View, image2View,bgView,txt1, txt2, txt3,txt4,txt5,image1Url, image2Url, bgUrl)
         }
 
         binding.mt.setOnClickListener {
@@ -163,6 +174,10 @@ class DisplayLayoutActivity : AppCompatActivity() {
                 // Revert to the default font (system font)
                 txt1View.typeface = Typeface.DEFAULT
                 txt2View.typeface = Typeface.DEFAULT
+                txt3View.typeface = Typeface.DEFAULT
+                txt4View.typeface = Typeface.DEFAULT
+                txt5View.typeface = Typeface.DEFAULT
+
 
                 // Change FAB color to yellow
                 binding.fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.yellow))
@@ -173,6 +188,9 @@ class DisplayLayoutActivity : AppCompatActivity() {
                 // Set the custom font to TextView1 and TextView2
                 txt1View.typeface = typeface
                 txt2View.typeface = typeface
+                txt3View.typeface = typeface
+                txt4View.typeface =typeface
+                txt5View.typeface = typeface
 
                 // Change FAB color to green
                 binding.fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.green))
@@ -187,6 +205,9 @@ class DisplayLayoutActivity : AppCompatActivity() {
 
         txt1View?.setOnTouchListener(gestureTouchListeneredit)
         txt2View?.setOnTouchListener(gestureTouchListeneredit)
+        txt3View?.setOnTouchListener(gestureTouchListeneredit)
+        txt4View?.setOnTouchListener(gestureTouchListeneredit)
+        txt5View?.setOnTouchListener(gestureTouchListeneredit)
         image1View?.setOnTouchListener(gestureTouchListeneredit)
         image2View?.setOnTouchListener(gestureTouchListeneredit)
 

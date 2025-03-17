@@ -44,6 +44,9 @@ class LayoutListAdapter(
         val name = itemData["name"] as? String ?: "Unknown"
         val txt1 = itemData["txt1"] as? String ?: "Default Title"
         val txt2 = itemData["txt2"] as? String ?: "Default Message"
+        val txt3 = itemData["txt3"] as? String ?: "Default Message"
+        val txt4 = itemData["txt4"] as? String ?: "Default Message"
+        val txt5 = itemData["txt5"] as? String ?: "Default Message"
         val image1Url = itemData["image1"] as? String
         val image2Url = itemData["image2"] as? String
         val bgUrl = itemData["bg"] as? String
@@ -63,11 +66,17 @@ class LayoutListAdapter(
         val rootLayout = layoutView.findViewById<View>(R.id.bg)
         val txt1View = layoutView.findViewById<TextView>(R.id.txt1)
         val txt2View = layoutView.findViewById<TextView>(R.id.txt2)
+        val txt3View = layoutView.findViewById<TextView>(R.id.txt3)
+        val txt4View = layoutView.findViewById<TextView>(R.id.txt4)
+        val txt5View = layoutView.findViewById<TextView>(R.id.txt5)
         val image1View = layoutView.findViewById<ImageView>(R.id.image1)
         val image2View = layoutView.findViewById<ImageView>(R.id.image2)
 
         txt1View?.text = txt1
         txt2View?.text = txt2
+        txt3View?.text = txt3
+        txt4View?.text = txt4
+        txt5View?.text = txt5
 
         var imagesLoaded = 0
         val totalImages = listOfNotNull(image1Url, image2Url, bgUrl).size

@@ -27,11 +27,17 @@ class CustomModifier(private val context: Context) {
     fun showDialog(
         textView1: TextView,    // Custom TextView1
         textView2: TextView,    // Custom TextView2
+        textView3: TextView,    // Custom TextView2
+        textView4: TextView,    // Custom TextView2
+        textView5: TextView,    // Custom TextView2
         imageView1: ImageView,  // Custom ImageView1
         imageView2: ImageView,   // Custom ImageView2
         bgView: LinearLayout,
         txt1: String,
         txt2: String,
+        txt3: String,
+        txt4: String,
+        txt5: String,
         image1Url: String?,
         image2Url: String?,
         bgUrl: String?
@@ -41,8 +47,11 @@ class CustomModifier(private val context: Context) {
 
 
         // Set text
-        textView1.text = txt1
+/*        textView1.text = txt1
         textView2.text = txt2
+        textView3.text = txt3
+        textView4.text = txt4
+        textView5.text = txt5*/
 
         // Find views in customView
         val bgImageView1 = customView.findViewById<ImageView>(R.id.bgimage1)
@@ -51,9 +60,15 @@ class CustomModifier(private val context: Context) {
         val rightImageView2 = customView.findViewById<ImageView>(R.id.rightImageView2)
         val rightTextView1 = customView.findViewById<TextView>(R.id.rightTextView1)
         val rightTextView2 = customView.findViewById<TextView>(R.id.rightTextView2)
+        val rightTextView3 = customView.findViewById<TextView>(R.id.rightTextView3)
+        val rightTextView4 = customView.findViewById<TextView>(R.id.rightTextView4)
+        val rightTextView5 = customView.findViewById<TextView>(R.id.rightTextView5)
 
         rightTextView1.text = txt1
         rightTextView2.text = txt2
+        rightTextView3.text = txt3
+        rightTextView4.text = txt4
+        rightTextView5.text = txt5
         // Load right images if URLs are provided
         if (!image1Url.isNullOrEmpty()) {
             Glide.with(context)
@@ -84,7 +99,7 @@ class CustomModifier(private val context: Context) {
                 .into(bgImageView2)
         }
 
-        initializeViews(customView, textView1, textView2, imageView1, imageView2, alertDialog,bgView,bgImageView1,bgImageView2,rightImageView1,rightImageView2,rightTextView1,rightTextView2)
+        initializeViews(customView, textView1, textView2, textView3,textView4,textView5,imageView1, imageView2, alertDialog,bgView,bgImageView1,bgImageView2,rightImageView1,rightImageView2,rightTextView1,rightTextView2,rightTextView3,rightTextView4,rightTextView5)
         alertDialog.show()
     }
 
@@ -103,6 +118,9 @@ class CustomModifier(private val context: Context) {
         customView: View,
         textView1: TextView,
         textView2: TextView,
+        textView3: TextView,
+        textView4: TextView,
+        textView5: TextView,
         imageView1: ImageView,
         imageView2: ImageView,
         alertDialog: AlertDialog,
@@ -112,7 +130,10 @@ class CustomModifier(private val context: Context) {
         rightImageView1: ImageView,
         rightImageView2: ImageView,
         rightTextView1: TextView,
-        rightTextView2: TextView
+        rightTextView2: TextView,
+        rightTextView3: TextView,
+        rightTextView4: TextView,
+        rightTextView5: TextView
     ) {
         customView.apply {
             findViewById<LinearLayout>(R.id.share).setOnClickListener {
@@ -137,6 +158,18 @@ class CustomModifier(private val context: Context) {
 
             findViewById<LinearLayout>(R.id.mithilakshar).setOnClickListener {
                 showCustomEditDialog(textView1, rightTextView1 )
+                alertDialog.dismiss()
+            }
+            findViewById<LinearLayout>(R.id.mithilakshar2).setOnClickListener {
+                showCustomEditDialog(textView3, rightTextView3 )
+                alertDialog.dismiss()
+            }
+            findViewById<LinearLayout>(R.id.mithilakshar3).setOnClickListener {
+                showCustomEditDialog(textView4, rightTextView4 )
+                alertDialog.dismiss()
+            }
+            findViewById<LinearLayout>(R.id.mithilakshar4).setOnClickListener {
+                showCustomEditDialog(textView5, rightTextView5 )
                 alertDialog.dismiss()
             }
 

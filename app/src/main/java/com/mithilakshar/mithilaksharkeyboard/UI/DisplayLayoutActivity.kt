@@ -68,7 +68,7 @@ class DisplayLayoutActivity : AppCompatActivity() {
         val bgUrl = intent.getStringExtra("bg")
 
 
-
+        Toast.makeText(this, "स्क्रीन पर मौजूद वस्तु सभ केँ घुसका कऽ (ड्रैग कऽ) आसानी सँ अरेंज कय सकैत छी।", Toast.LENGTH_LONG).show()
 
 
 

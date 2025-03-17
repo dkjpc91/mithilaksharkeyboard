@@ -61,6 +61,13 @@ class LayoutGenerator : AppCompatActivity() {
 
         }
 
+        binding.tester.setOnClickListener {
+            val intent = Intent(this, LayoutTester::class.java)
+            startActivity(intent)
+
+        }
+
+
 
 
     }

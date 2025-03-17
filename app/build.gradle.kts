@@ -45,6 +45,8 @@ dependencies {
     implementation ("com.airbnb.android:lottie:6.1.0")
     implementation ("com.github.skydoves:colorpickerview:2.3.0")
     implementation ("androidx.cardview:cardview:1.0.0")
+
+
     implementation (libs.glide)
     implementation(libs.app.update)
     implementation(libs.app.update.ktx)

@@ -1,43 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Basic Colors -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF5722</color>
-
-
-        <color name="colorPrimary">#6200EE</color>  <!-- Example primary color -->
-
-        <color name="green">#4CAF50</color>  <!-- Green color -->
-        <color name="yellow">#FFEB3B</color> <!-- Yellow color -->
-        <!-- Light grey background for ScrollView -->
-        <color name="light_grey">#F5F5F5</color>
-
-        <!-- White background for cards and buttons -->
-
-
-        <!-- Dark grey text color for secondary text -->
-        <color name="dark_grey">#757575</color>
-
-        <!-- Blue text color for Edit Text Button -->
-        <color name="blue">#0000FF</color>
-
-
-
-        <!-- Custom SeekBar Progress Color -->
-        <color name="seekbar_progress">#FF6200EE</color>
-
-        <!-- Custom SeekBar Background Color -->
-        <color name="seekbar_background">#E0E0E0</color>
-
-        <!-- Custom Thumb Color for SeekBar -->
-        <color name="seekbar_thumb">#FF3700B3</color>
-
-        <!-- Rounded Button Background Color -->
-        <color name="rounded_button_background">#E3F2FD</color>
-
+    <color name="green">#4CAF50</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="blue">#0000FF</color>
     <color name="purple_500">#9C27B0</color>
-
-    <!-- Teal 700 (Material Design Color) -->
     <color name="teal_700">#00796B</color>
 
+    <!-- Primary and Secondary Colors -->
+    <color name="colorPrimary">#6200EE</color>  <!-- Example primary color -->
+    <color name="light_grey">#F5F5F5</color>    <!-- Light grey background for ScrollView -->
+    <color name="dark_grey">#757575</color>     <!-- Dark grey text color for secondary text -->
+
+    <!-- SeekBar Colors -->
+    <color name="seekbar_progress">#FF6200EE</color>    <!-- Custom SeekBar Progress Color -->
+    <color name="seekbar_background">#E0E0E0</color>   <!-- Custom SeekBar Background Color -->
+    <color name="seekbar_thumb">#FF3700B3</color>       <!-- Custom Thumb Color for SeekBar -->
+
+    <!-- Button Colors -->
+    <color name="rounded_button_background">#E3F2FD</color>  <!-- Rounded Button Background Color -->
+
+    <!-- New Colors -->
+    <color name="orange">#FF9800</color>               <!-- Orange color -->
+    <color name="pink">#E91E63</color>                 <!-- Pink color -->
+    <color name="cyan">#00BCD4</color>                 <!-- Cyan color -->
+    <color name="indigo">#3F51B5</color>               <!-- Indigo color -->
+    <color name="brown">#795548</color>                <!-- Brown color -->
+    <color name="amber">#FFC107</color>                <!-- Amber color -->
+    <color name="deep_purple">#673AB7</color>          <!-- Deep Purple color -->
+    <color name="light_blue">#03A9F4</color>           <!-- Light Blue color -->
+    <color name="lime">#CDDC39</color>                 <!-- Lime color -->
+    <color name="deep_orange">#FF5722</color>          <!-- Deep Orange color -->
+    <color name="grey_300">#E0E0E0</color>             <!-- Light Grey (300) -->
+    <color name="grey_500">#9E9E9E</color>             <!-- Medium Grey (500) -->
+    <color name="grey_700">#616161</color>             <!-- Dark Grey (700) -->
 </resources>

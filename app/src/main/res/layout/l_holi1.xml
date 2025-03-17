@@ -1,125 +1,115 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/bg"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/page1"
-    android:elevation="4dp"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/bg"
+    android:background="@drawable/page10"
+    android:padding="10dp">
 
-    <!-- Preview Image (Full Width) -->
-    <ImageView
-        android:id="@+id/image1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.4"
-        android:scaleType="fitXY"
-        android:adjustViewBounds="true"/>
-
-    <!-- Greeting Title -->
-    <TextView
-        android:id="@+id/txt1"
+    <!-- RelativeLayout as the first child -->
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Happy Holi!"
-        android:textSize="18sp"
-        android:textColor="@color/red"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:paddingVertical="8dp"/>
+        android:layout_marginBottom="6dp">
 
-    <!-- Holi Message -->
-    <TextView
-        android:id="@+id/txt2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Enjoy the colors of joy and happiness!"
-        android:textSize="14sp"
-        android:textColor="@color/red"
-        android:gravity="center"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="8dp"/>
-    <TextView
-        android:id="@+id/txt3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Happy Holi!"
-        android:textSize="18sp"
-        android:textColor="@color/red"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:paddingVertical="8dp"/>
-    <TextView
-        android:id="@+id/txt4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Happy Holi!"
-        android:textSize="18sp"
-        android:textColor="@color/red"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:paddingVertical="8dp"/>
-    <TextView
-        android:id="@+id/txt5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Happy Holi!"
-        android:textSize="18sp"
-        android:textColor="@color/red"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:paddingVertical="8dp"/>
+        <!-- ImageView for the Diwali lamp -->
+        <ImageView
+            android:id="@+id/image1"
+            android:layout_marginTop="15dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/share"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="Diwali Lamp" />
 
-
-    <!-- Decorative Divider Line -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@android:color/darker_gray"
-        android:layout_marginVertical="8dp"/>
-
-    <!-- Buttons Container -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingHorizontal="8dp"
-        android:layout_marginBottom="8dp">
-
-        <!-- View Details Button -->
-        <Button
-            android:id="@+id/btnViewDetails"
-            android:layout_width="0dp"
+        <!-- TextView for the main greeting -->
+        <TextView
+            android:padding="5dp"
+            android:gravity="center"
+            android:id="@+id/txt1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="View Details"
-            android:backgroundTint="#FF9800"
-            android:textColor="@android:color/white"
-            android:padding="8dp"
-            android:elevation="6dp"
-            android:layout_marginEnd="4dp"/>
+            android:text="शुभ दीपावली!"
+            android:textSize="32sp"
+            android:textColor="@color/red"
+            android:textStyle="bold"
+            android:layout_below="@id/image1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="6dp" />
 
-        <!-- Share Button -->
-        <Button
-            android:id="@+id/btnShare"
-            android:layout_width="0dp"
+        <!-- LinearLayout for the additional text messages -->
+        <LinearLayout
+            android:id="@+id/textContainer"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Share"
-            android:backgroundTint="#03A9F4"
-            android:textColor="@android:color/white"
-            android:padding="8dp"
-            android:elevation="6dp"
-            android:layout_marginStart="4dp"/>
-    </LinearLayout>
+            android:layout_below="@id/txt1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:background="#00FBFBFB"
+            android:orientation="vertical"
+            android:padding="10dp">
 
-    <!-- Bottom Image (Full Width) -->
-    <ImageView
-        android:id="@+id/image2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.4"
-        android:scaleType="fitXY"
-        android:adjustViewBounds="true"/>
+            <!-- TextView for the first message -->
+            <TextView
+                android:id="@+id/txt2"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="मिथिला मे होली केँ ‘फगुआ’ कहल जाइत अछि। ई पाबैन रंग आ उमंग केर संग भक्ति आ संस्कृतिक प्रतीक छी।"
+                android:textColor="@color/blue"
+                android:textSize="18sp" />
+
+            <!-- TextView for the second message -->
+            <TextView
+                android:id="@+id/txt3"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="मिथिला मे होली केवल रंगक खेल नहि, बल्कि भजन-कीर्तन, सामूहिक नाच-गान आ पारंपरिक लोकगीत केर माध्यम सँ मनाओल जाइत अछि।"
+                android:textColor="@color/blue"
+                android:textSize="18sp" />
+
+            <!-- TextView for the third message -->
+            <TextView
+                android:id="@+id/txt4"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="सभके होली के हार्दिक शुभकामना! रंग आ खुशी से भरल होली मनाउ।"
+                android:textColor="@color/blue"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <!-- Signature TextView inside RelativeLayout -->
+        <TextView
+            android:id="@+id/txt5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Name"
+            android:textSize="24sp"
+            android:textColor="@color/red"
+            android:textStyle="bold"
+            android:layout_below="@id/textContainer"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="05dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"/>
+
+        <!-- ImageView for the festival crackers -->
+        <ImageView
+            android:id="@+id/image2"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:layout_below="@id/txt5"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2dp"
+            android:contentDescription="Festival Crackers"
+            android:scaleType="centerCrop"
+            android:src="@drawable/zigzag" />
+    </RelativeLayout>
 </LinearLayout>

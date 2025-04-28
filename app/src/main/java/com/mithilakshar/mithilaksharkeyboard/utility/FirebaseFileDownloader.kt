@@ -1,120 +1,70 @@
 package com.mithilakshar.mithilaksharkeyboard.utility
 
-
 import android.content.Context
-
 import android.util.Log
-import androidx.lifecycle.LiveData
-
 import androidx.lifecycle.MutableLiveData
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
+import kotlinx.coroutines.*
 import java.io.File
-
+import java.io.FileOutputStream
+import java.net.HttpURLConnection
+import java.net.URL
 
 class FirebaseFileDownloader(private val context: Context) {
 
-
     private val TAG = "FirebaseFileDownloader"
-    private val firestore = FirebaseFirestore.getInstance()
-    private val storage = FirebaseStorage.getInstance()
     val downloadProgressLiveData: MutableLiveData<Int> = MutableLiveData()
 
-
-
-
-
-    fun retrieveURL(documentPath: String,action: String, urlFieldName: String, callback: (File?) -> Unit) {
-        // Retrieve the URL from Firestore
-        firestore.document(documentPath)
-            .get()
-            .addOnSuccessListener { documentSnapshot ->
-                if (documentSnapshot.exists()) {
-                    val url = documentSnapshot.getString("test")
-                    if (url != null) {
-                        // Create a directory for storing downloaded files
-                        val downloadDirectory = File(context.getExternalFilesDir(null), "test")
-                        if (!downloadDirectory.exists()) {
-                            downloadDirectory.mkdirs()
-                        }
-
-                        // Create a local file path
-                        val localFile = File(downloadDirectory, urlFieldName)
-
-                        if (localFile.exists()) {
-                            if (action == "return") {
-                                // File already exists locally, return it
-                                downloadProgressLiveData.postValue(100)
-                                callback(localFile)
-                            } else if (action == "delete") {
-                                // Delete the file and then download it
-                                localFile.delete()
-                                downloadFile(url, localFile, callback)
-                            }
-                            //
-
-                        } else {
-
-                            // File does not exist locally
-                            if (action == "return" || action == "delete") {
-                                // Download from Firebase Storage
-                                downloadFile(url, localFile, callback)
-                            }
-                            // File does not exist locally, download from Firebase Storage
-
-                        }
-                    } else {
-                        Log.d(TAG, "URL field is null")
-                        callback(null)
-                    }
-                } else {
-                    Log.d(TAG, "Document does not exist")
-                    callback(null)
+    /**
+     * Start downloading given url and filename
+     * Callback gives downloaded File or null if error
+     */
+    fun download(urlString: String, fileName: String, callback: (File?) -> Unit) {
+        // Start coroutine internally
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val dbFolderPath = context.getExternalFilesDir(null)?.absolutePath + File.separator + "test"
+                val folder = File(dbFolderPath)
+                if (!folder.exists()) {
+                    folder.mkdirs()
                 }
-            }
-            .addOnFailureListener { e ->
-                Log.e(TAG, "Error retrieving document", e)
-                callback(null)
-            }
-    }
+                val localFile = File(folder, fileName)
 
+                val url = URL(urlString)
+                val connection = url.openConnection() as HttpURLConnection
+                connection.connect()
 
-    private fun downloadFile(url: String, localFile: File, callback: (File?) -> Unit) {
-        val storageRef = storage.getReferenceFromUrl(url)
-        val downloadTask = storageRef.getFile(localFile)
+                if (connection.responseCode != HttpURLConnection.HTTP_OK) {
+                    Log.e(TAG, "Server returned HTTP ${connection.responseCode}")
+                    withContext(Dispatchers.Main) { callback(null) }
+                    return@launch
+                }
 
-        downloadTask.addOnSuccessListener {
-            callback(localFile)
-        }.addOnFailureListener { e ->
-            Log.e(TAG, "Error downloading file", e)
-            callback(null)
-        }.addOnProgressListener { taskSnapshot ->
-            val progress = (100.0 * taskSnapshot.bytesTransferred / taskSnapshot.totalByteCount)
-            Log.d(TAG, "Download is $progress% done")
-            downloadProgressLiveData.postValue(progress.toInt())
-        }.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                Log.d(TAG, "Download complete")
-                // Perform another task only if the file download is completed
-                performAnotherTask()
+                val inputStream = connection.inputStream
+                val totalSize = connection.contentLength
+                var downloadedSize = 0
+
+                val outputStream = FileOutputStream(localFile)
+                val buffer = ByteArray(4096)
+                var bytesRead: Int
+
+                while (inputStream.read(buffer).also { bytesRead = it } != -1) {
+                    outputStream.write(buffer, 0, bytesRead)
+                    downloadedSize += bytesRead
+
+                    val progress = if (totalSize > 0) (downloadedSize * 100) / totalSize else -1
+                    downloadProgressLiveData.postValue(progress)
+                }
+
+                outputStream.flush()
+                outputStream.close()
+                inputStream.close()
+                connection.disconnect()
+
+                withContext(Dispatchers.Main) { callback(localFile) }
+            } catch (e: Exception) {
+                Log.e(TAG, "Download error", e)
+                withContext(Dispatchers.Main) { callback(null) }
             }
         }
     }
-
-    fun checkFileExistence(fileName: String): LiveData<Boolean> {
-        val fileExistsLiveData = MutableLiveData<Boolean>()
-        val dbFolderPath = context.getExternalFilesDir(null)?.absolutePath + File.separator + "test"
-        val dbFile = File(dbFolderPath, fileName)
-        fileExistsLiveData.value = dbFile.exists()
-        return fileExistsLiveData
-    }
-
-    private fun performAnotherTask() {
-        // Placeholder for additional tasks after download completion
-        Log.d(TAG, "Performing another task after download")
-    }
-
-
-
-
 }

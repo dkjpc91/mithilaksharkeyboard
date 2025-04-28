@@ -57,10 +57,10 @@ abstract class UpdatesDatabase : RoomDatabase() {
         // Insert dummy data here
 
         val mantra = Updates(id = 1, fileName = "Imageslist.db", uniqueString = "Imageslist")
-        val add = Updates(id = 2, fileName = "add.db", uniqueString = "e")
+        val posterlist = Updates(id = 3, fileName = "posterlist.db", uniqueString = "f")
 
         updatesDao.insert(mantra)
-        updatesDao.insert(add)
+        updatesDao.insert(posterlist)
 
 
     }

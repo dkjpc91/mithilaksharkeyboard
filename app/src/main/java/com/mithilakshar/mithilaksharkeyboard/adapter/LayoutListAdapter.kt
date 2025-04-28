@@ -23,7 +23,7 @@ class LayoutListAdapter(
 ) : RecyclerView.Adapter<LayoutListAdapter.ViewHolder>() {
 
     private val TAG = "LayoutListAdapter"
-    private val PAGE_SIZE = 10  // Load 10 items at a time
+    private val PAGE_SIZE = 5 // Load 10 items at a time
     private var visibleCategoryMap: MutableList<Map<String, Any?>> = mutableListOf()
     var isLoading = false
 

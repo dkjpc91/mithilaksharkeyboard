@@ -1,11 +1,9 @@
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.res.Resources
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.GridLayoutManager
@@ -46,12 +44,6 @@ class CustomModifier(private val context: Context) {
         val alertDialog = createAlertDialog(customView)
 
 
-        // Set text
-/*        textView1.text = txt1
-        textView2.text = txt2
-        textView3.text = txt3
-        textView4.text = txt4
-        textView5.text = txt5*/
 
         // Find views in customView
         val bgImageView1 = customView.findViewById<ImageView>(R.id.bgimage1)
@@ -99,7 +91,7 @@ class CustomModifier(private val context: Context) {
                 .into(bgImageView2)
         }
 
-        initializeViews(customView, textView1, textView2, textView3,textView4,textView5,imageView1, imageView2, alertDialog,bgView,bgImageView1,bgImageView2,rightImageView1,rightImageView2,rightTextView1,rightTextView2,rightTextView3,rightTextView4,rightTextView5)
+        initializeViews(customView, textView1, textView2, textView3,textView4,textView5,imageView1, imageView2, alertDialog,bgView,bgImageView1,bgImageView2,rightImageView1,rightImageView2,rightTextView1,rightTextView2,rightTextView3,rightTextView4,rightTextView5,txt1,txt2,txt3,txt4,txt5,)
         alertDialog.show()
     }
 
@@ -133,7 +125,12 @@ class CustomModifier(private val context: Context) {
         rightTextView2: TextView,
         rightTextView3: TextView,
         rightTextView4: TextView,
-        rightTextView5: TextView
+        rightTextView5: TextView,
+        txt1: String,
+        txt2: String,
+        txt3: String,
+        txt4: String,
+        txt5: String
     ) {
         customView.apply {
             findViewById<LinearLayout>(R.id.share).setOnClickListener {
@@ -157,24 +154,24 @@ class CustomModifier(private val context: Context) {
             }
 
             findViewById<LinearLayout>(R.id.mithilakshar).setOnClickListener {
-                showCustomEditDialog(textView1, rightTextView1 )
+                showCustomEditDialog(textView1, rightTextView1,txt1)
                 alertDialog.dismiss()
             }
             findViewById<LinearLayout>(R.id.mithilakshar2).setOnClickListener {
-                showCustomEditDialog(textView3, rightTextView3 )
+                showCustomEditDialog(textView3, rightTextView3,txt3 )
                 alertDialog.dismiss()
             }
             findViewById<LinearLayout>(R.id.mithilakshar3).setOnClickListener {
-                showCustomEditDialog(textView4, rightTextView4 )
+                showCustomEditDialog(textView4, rightTextView4 ,txt4)
                 alertDialog.dismiss()
             }
             findViewById<LinearLayout>(R.id.mithilakshar4).setOnClickListener {
-                showCustomEditDialog(textView5, rightTextView5 )
+                showCustomEditDialog(textView5, rightTextView5,txt5)
                 alertDialog.dismiss()
             }
 
             findViewById<LinearLayout>(R.id.devnagri).setOnClickListener {
-                showCustomEditDialog(textView2,rightTextView2)
+                showCustomEditDialog(textView2,rightTextView2,txt2)
                 alertDialog.dismiss()
             }
 
@@ -466,7 +463,10 @@ class CustomModifier(private val context: Context) {
 
 
     // Method to show a custom dialog to edit the text content
-    private fun showCustomEditDialog(targetTextView: TextView, rightTextView1: TextView, ) {
+/*    private fun showCustomEditDialog(
+        targetTextView: TextView,
+        rightTextView1: TextView,
+        txt1: String, ) {
         val dialogView = LayoutInflater.from(context).inflate(R.layout.edit_text_dialog, null)
         val editText = dialogView.findViewById<EditText>(R.id.editText)
         val seekBar = dialogView.findViewById<SeekBar>(R.id.seekBarTextSize)
@@ -508,6 +508,89 @@ class CustomModifier(private val context: Context) {
         }
 
         dialog.show()
+    }*/
+
+    private fun showCustomEditDialog(
+        targetTextView: TextView,
+        rightTextView1: TextView,
+        txt1: String
+    ) {
+        // Inflate the custom dialog layout
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.edit_text_dialog, null)
+        val editText = dialogView.findViewById<EditText>(R.id.editText)
+        val seekBar = dialogView.findViewById<SeekBar>(R.id.seekBarTextSize)
+        val colorPickerButton = dialogView.findViewById<Button>(R.id.colorPickerButton)
+        val saveButton = dialogView.findViewById<Button>(R.id.saveButton)
+
+        // Check if the text contains a placeholder (e.g., [placeholder])
+        val hasPlaceholder = txt1.contains("\\[.*?\\]".toRegex())
+
+        // Initialize the EditText based on the condition
+        if (hasPlaceholder) {
+            // Extract the placeholder value for editing
+            val placeholderValue = extractPlaceholderValue(txt1)
+            editText.setText(placeholderValue)
+        } else {
+            // Allow editing the entire text
+            editText.setText(txt1)
+        }
+
+        seekBar.progress = 16  // Default text size
+
+        // Create the dialog
+        val dialog = AlertDialog.Builder(context)
+            .setView(dialogView)
+            .setCancelable(true)
+            .create()
+
+        // Handle color picker button click
+        colorPickerButton.setOnClickListener {
+            ColorPickerDialog(context, object : ColorPickerDialog.ColorPickerListener {
+                override fun onColorSelected(color: Int) {
+                    targetTextView.setTextColor(color)
+                    rightTextView1.setTextColor(color)
+                }
+            }).show()
+        }
+
+        // Handle SeekBar for text size adjustment
+        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                val newSize = (progress + 10).toFloat()
+                targetTextView.textSize = newSize
+                rightTextView1.textSize = newSize
+            }
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+        })
+
+        // Handle save button to update the TextView's content
+        saveButton.setOnClickListener {
+            val newValue = editText.text.toString()
+            val updatedText = if (hasPlaceholder) {
+                // Replace the placeholder with the new value
+                replacePlaceholder(txt1, newValue)
+            } else {
+                // Use the entire edited text
+                newValue
+            }
+            targetTextView.text = updatedText
+            rightTextView1.text = updatedText
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    // Helper function to extract the placeholder value from the text
+    private fun extractPlaceholderValue(text: String): String {
+        val regex = Regex("\\[(.*?)\\]")
+        return regex.find(text)?.groupValues?.get(1) ?: ""
+    }
+
+    // Helper function to replace the placeholder with a new value
+    private fun replacePlaceholder(text: String, newValue: String): String {
+        return text.replace("\\[.*?\\]".toRegex(), newValue)
     }
 
     // Share app link

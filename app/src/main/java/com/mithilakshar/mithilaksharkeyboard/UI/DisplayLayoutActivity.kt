@@ -30,7 +30,6 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.mithilakshar.mithilaksharkeyboard.R
 import com.mithilakshar.mithilaksharkeyboard.databinding.ActivityDisplayLayoutBinding
-import com.mithilakshar.mithilaksharkeyboard.utility.GestureTouchListener
 import com.mithilakshar.mithilaksharkeyboard.utility.GestureTouchListeneredit
 
 
@@ -48,7 +47,7 @@ class DisplayLayoutActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Initialize RelativeLayout instead of LinearLayout
-        layoutContainer = binding.root
+        layoutContainer = binding.layoutContainer
 
         // Ensure secure window flag is set
         window.setFlags(
@@ -70,6 +69,9 @@ class DisplayLayoutActivity : AppCompatActivity() {
 
         Toast.makeText(this, "स्क्रीन पर मौजूद वस्तु सभ केँ घुसका कऽ (ड्रैग कऽ) आसानी सँ अरेंज कय सकैत छी।", Toast.LENGTH_LONG).show()
 
+        Toast.makeText(this, "बटन पर क्लिक कऽ नाम संपादित कऽ सकैत छी।", Toast.LENGTH_LONG).show()
+
+
 
 
         // Convert the layout name into a resource ID
@@ -85,7 +87,7 @@ class DisplayLayoutActivity : AppCompatActivity() {
         val layoutView = inflater.inflate(layoutId, null) // Inflate the layout
 
 // Get the root view of the activity
-        val rootView = binding.root
+        val rootView = binding.layoutContainer
 
 // Set layout parameters to make sure it fills the screen
         val layoutParams = ViewGroup.LayoutParams(

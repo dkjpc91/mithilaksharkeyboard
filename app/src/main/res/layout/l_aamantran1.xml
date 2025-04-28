@@ -23,8 +23,8 @@
             android:src="@drawable/m"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="10dp"
-        android:contentDescription="मुख्य आयोजन छवि"
-        android:layout_marginTop="0dp" />
+            android:contentDescription="मुख्य आयोजन छवि"
+            android:layout_marginTop="0dp" />
 
         <!-- LinearLayout for the additional text messages -->
         <LinearLayout
@@ -52,7 +52,7 @@
                 android:textColor="@color/red"
                 android:textStyle="bold"
                 android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp" /> <!-- 1dp bottom margin -->
+                android:layout_marginBottom="1dp" /> <!-- 1dp bottom margin -->
 
             <!-- TextView for the event date -->
             <TextView
@@ -111,9 +111,9 @@
             android:layout_below="@id/txt5"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
-        android:layout_marginBottom="-5dp"
-        android:contentDescription="आयोजन उत्सव"
-        android:scaleType="fitCenter"
-        android:src="@drawable/m" />
+            android:layout_marginBottom="-5dp"
+            android:contentDescription="आयोजन उत्सव"
+            android:scaleType="fitCenter"
+            android:src="@drawable/m" />
     </RelativeLayout>
 </LinearLayout>

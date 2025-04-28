@@ -19,11 +19,14 @@
         android:theme="@style/Theme.MithilaksharKeyboard"
         tools:targetApi="31">
         <activity
+            android:name=".UI.PosterActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
             android:name=".UI.LayoutTester"
             android:exported="false" />
         <activity
             android:name=".UI.DisplayLayoutActivity"
-
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -33,7 +36,7 @@
         <activity
             android:name=".UI.LayoutGenerator"
             android:exported="true"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".HomeActivity"
             android:exported="true"

@@ -199,6 +199,48 @@ class dbHelper(context: Context, dbName: String) {
     }
 
     @SuppressLint("Range")
+    fun getAllPosterItems(): List<Map<String, String>> {
+        val posterItems = mutableListOf<Map<String, String>>()
+
+        // Check if the database is null
+        if (db == null) {
+            Log.e(TAG, "Database is null!")
+            return emptyList()
+        }
+
+        // Check if the database is open
+        if (!db!!.isOpen) {
+            Log.w(TAG, "Database not open for reading poster items")
+            return emptyList()
+        }
+
+        // Query to select all columns from the posterlist table
+        val query = "SELECT sno, category, name, hindiname, url FROM posterlist"
+
+        db!!.rawQuery(query, null)?.use { cursor ->
+            if (cursor.count > 0) { // Ensure cursor is not empty
+                while (cursor.moveToNext()) {
+                    // Create a map for each row
+                    val row = mutableMapOf<String, String>()
+                    row["sno"] = cursor.getString(cursor.getColumnIndex("sno"))
+                    row["category"] = cursor.getString(cursor.getColumnIndex("category"))
+                    row["name"] = cursor.getString(cursor.getColumnIndex("name"))
+                    row["hindiname"] = cursor.getString(cursor.getColumnIndex("hindiname"))
+                    row["url"] = cursor.getString(cursor.getColumnIndex("url"))
+
+                    // Add the row to the list of poster items
+                    posterItems.add(row)
+                }
+            } else {
+                Log.w(TAG, "No data found in posterlist table")
+            }
+        }
+
+        return posterItems
+    }
+
+
+    @SuppressLint("Range")
     fun getImage2List(): List<String> {
         val imageUrls = mutableListOf<String>()
 

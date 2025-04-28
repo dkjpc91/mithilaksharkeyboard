@@ -19,7 +19,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/outerBorder"
             android:layout_width="160dp"
-            android:layout_height="260dp"
+            android:layout_height="250dp"
             app:cardCornerRadius="24dp"
             app:cardElevation="6dp"
             app:cardBackgroundColor="@android:color/transparent"

@@ -36,17 +36,17 @@ class LayoutTester : AppCompatActivity() {
         // Data
         val layoutName = "दुर्गा पूजा"
 
-        val txt1Text = "दुर्गा पूजा के शुभकामना!"
-        val txt2Text = "मिथिला मे दुर्गा पूजा भक्ति, संस्कृति आ सामाजिक एकता केर प्रतीक अछि। शक्तिक उपासना संग-संग एहि अवसर पर लोकक हर्षोल्लास अद्भुत होइत अछि।"
-        val txt3Text = "माँ दुर्गा अहाँक जीवन मे शक्ति, शांति आ समृद्धि प्रदान करथि। दुर्गा पूजा केर मंगलमय शुभकामना!"
-        val txt4Text = ""
-        val txt5Text = "नाम : दीपक कुमार झा"
+        val txt1Text = "सादर आमंत्रण प्रियजन, हम अहाँकेँ सादर आमंत्रण दैत छी कि अहाँ अपन परिवार संग आबि [आयोजनक नाम] मे भाग लिअऽ। अहाँक उपस्थिति सँ एहिठामक आनंद आ उत्साह आरो बढ़त।"
+        val txt2Text = "तारीख: [तारीख जोड़ू]"
+        val txt3Text = " स्थान: [स्थान जोड़ू]"
+        val txt4Text = "समय: [समय जोड़ू]"
+        val txt5Text = "अहाँक आगमन केर प्रतीक्षा मे। सादर, [अहाँक नाम] "
 
 
 
-        val image1Url = "https://i.pinimg.com/736x/89/50/ee/8950ee2165fa9dda202ea759586a4c40.jpg"
-        val image2Url = "https://i.pinimg.com/736x/b9/b1/55/b9b155e6b25629664e2e0cef5c59fd3e.jpg"
-        val bgUrl = "https://i.pinimg.com/736x/8f/96/71/8f9671098540133de4cab1eb272606d3.jpg"
+        val image1Url = "https://i.pinimg.com/736x/c0/51/31/c05131dfb06af2251012298652b99359.jpg"
+        val image2Url = "https://i.pinimg.com/736x/22/d9/ff/22d9ffa8c2561f0f5199579a01d43545.jpg"
+        val bgUrl = "https://i.pinimg.com/736x/21/d7/4c/21d74caf242f50e4355bfdfae6aae6c2.jpg"
 
         // Set text to TextViews
         binding.txt1.text = txt1Text
